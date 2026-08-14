@@ -11,8 +11,9 @@ const mge = {
     _keyboard:{},
     _sequencer:{},
     _synth:{},
-    _timer:{},
-    _camera:{}
+    _timer:{}
+    //,
+ //   _camera:{}
 }
 ///////////////////////////
 // Audio API
@@ -129,15 +130,15 @@ mge.game = {
         return mge._canvas._renderCanvas.width
     },
     set width(_value) {
-        mge._canvas._renderCanvas.width = _value,
-        mge._camera._x = _value / 2
+        mge._canvas._renderCanvas.width = _value
+//        mge._camera._x = _value / 2
     },
     get height() {
         return mge._canvas._renderCanvas.height
     },
     set height(_value) {
         mge._canvas._renderCanvas.height = _value
-        mge._camera._y = _value / 2
+//        mge._camera._y = _value / 2
     },
     // Frames per second
     get fps() {
@@ -170,52 +171,52 @@ mge.game = {
 ///////////////////////////
 // Keyboard API
 ///////////////////////////
-mge.keyboard = {
+//mge.keyboard = {
     ////////////////
     // Properties
     ////////////////
-    get keysPressed() {
-        return mge._keyboard._keyPressed
-    },
+//    get keysPressed() {
+//        return mge._keyboard._keyPressed
+//    },
     
     ////////////////
     // Methods
     ////////////////
-    isKeyPressed: function (_key) {
-        return mge._keyboard._isKeyPressed(_key)
-    }
-}
+//    isKeyPressed: function (_key) {
+//        return mge._keyboard._isKeyPressed(_key)
+//    }
+//}
 ///////////////////////////
 // Mouse API
 ///////////////////////////
-mge.mouse = {
+//mge.mouse = {
 
     ////////////////
     // Properties
     ////////////////
-    get isClicked () {
-        return mge._mouse._isClicked
-    },
-    get isDown () {
-        return mge._mouse._isDown
-    },
-    get isUp () {
-        return mge._mouse._isUp
-    },
-    get isPressed () {
-        return mge._mouse._isPressed
-    },
-    get isReleased () {
-        return mge._mouse._isReleased
-    },
-    get x() {
-        return mge._mouse._x
-    },
-    get y() {
-        return mge._mouse._y
-    }
+//    get isClicked () {
+//        return mge._mouse._isClicked
+//    },
+//    get isDown () {
+//        return mge._mouse._isDown
+//    },
+//    get isUp () {
+//        return mge._mouse._isUp
+//    },
+//    get isPressed () {
+//        return mge._mouse._isPressed
+//    },
+//    get isReleased () {
+//        return mge._mouse._isReleased
+//    },
+//    get x() {
+//        return mge._mouse._x
+//    },
+//    get y() {
+//        return mge._mouse._y
+//    }
 
-}
+//}
 // API on sprite objects    
 mge._sprite = {
     ////////////////
@@ -282,28 +283,28 @@ mge._sprite = {
         this._drawBoundaries = _value
     },
     // is touched by mouse
-    get isTouched() {
-        return this._isTouched()
-    },   
+//    get isTouched() {
+//        return this._isTouched()
+//    },   
     // is clicked
     get isClicked() {
         return this._isClicked() 
     },  
-    // is dragged
-    get isDragged() {
-        return this._isDragged() 
-    },  
+//    // is dragged
+//    get isDragged() {
+//        return this._isDragged() 
+//    },  
     // is selected
-    get isSelected() {
-        return this._isSelected() 
-    },  
+//    get isSelected() {
+//        return this._isSelected() 
+//    },  
     // scrollFactor
-    get scrollFactor() {
-        return this._scrollFactor
-    },
-    set scrollFactor(_value) {
-        this._scrollFactor = _value
-    },
+//    get scrollFactor() {
+//        return this._scrollFactor
+//    },
+//    set scrollFactor(_value) {
+//        this._scrollFactor = _value
+//    },
         
     ////////////////
     // Methods
@@ -314,21 +315,22 @@ mge._sprite = {
     cloneCreate : function() {
         return this._cloneCreate()
     },
-    cloneDelete : function() {
-        this._cloneDelete()
-    },
+    //cloneDelete : function() {
+    //    this._cloneDelete()
+    //},
     cloneDeleteAll : function() {
         this._cloneDeleteAll()
     },
     cloneExecuteForEach : function(_method) {
         return this._cloneExecuteForEach(_method)
-    },
-    isColliding : function(_spriteToCheck) {
-        return this._isColliding(_spriteToCheck)
-    },
-    listCollisionsWithClones : function(_sprite) {
-        return this._listCollisionsWithClones(_sprite)
     }
+    //,
+    //isColliding : function(_spriteToCheck) {
+    //    return this._isColliding(_spriteToCheck)
+    //},
+    //listCollisionsWithClones : function(_sprite) {
+    //    return this._listCollisionsWithClones(_sprite)
+    //}
 }
 // API on timer objects    
 mge._timer = {
@@ -495,7 +497,7 @@ mge._game._create = function (_width, _height) {
     mge._mouse._create(mge._canvas._renderCanvas)
 
     // Create keyboard
-    mge._keyboard._create()
+    //mge._keyboard._create()
 
     // Create the audio context
     mge._audio._create()
@@ -504,7 +506,7 @@ mge._game._create = function (_width, _height) {
     mge._sequencer._create()
 
     // Create the camera
-    mge._camera._create()
+    //mge._camera._create()
 
     // Create the game loop
     mge._loop._create()
@@ -581,71 +583,71 @@ mge._game._start = function (_scene) {
 ///////////////////////////
 // Check if a key is pressed
 ///////////////////////////
-mge._keyboard._isKeyPressed = function(_key) {
+//mge._keyboard._isKeyPressed = function(_key) {
 
-    if (this._keyPressed.indexOf(_key) == -1) {
-        return false
-    } else {
-        return true
-    }
-}
+//    if (this._keyPressed.indexOf(_key) == -1) {
+//        return false
+//    } else {
+//        return true
+//    }
+//}
 ///////////////////////////
 // Event handler onkeydown
 ///////////////////////////
-mge._keyboard._onKeyDown = function(e) {
+//mge._keyboard._onKeyDown = function(e) {
 
     // Add _keyPressedDetected array 
-    if (this._keyPressedDetected.indexOf(e.key) == -1) {
-        this._keyPressedDetected.push(e.key)
-    }
+//    if (this._keyPressedDetected.indexOf(e.key) == -1) {
+//        this._keyPressedDetected.push(e.key)
+//    }
 
-}
+//}
 ///////////////////////////
 // Event handler onkeyup
 ///////////////////////////
-mge._keyboard._onKeyUp = function(e) {
+//mge._keyboard._onKeyUp = function(e) {
 
     // Remove fom _keyPressedDetected array 
-    let indexOfKey = this._keyPressedDetected.indexOf(e.key)
-    if (indexOfKey != -1) {
-        this._keyPressedDetected.splice(indexOfKey,1)
-    }
-}
+//    let indexOfKey = this._keyPressedDetected.indexOf(e.key)
+//    if (indexOfKey != -1) {
+//        this._keyPressedDetected.splice(indexOfKey,1)
+//    }
+//}
 ///////////////////////////
 // Reset keyboard information
 ///////////////////////////
-mge._keyboard._reset = function() {
-    this._keyPressed = []
-    this._keyPressedDetected = []
-}
+//mge._keyboard._reset = function() {
+//    this._keyPressed = []
+//    this._keyPressedDetected = []
+//}
 ///////////////////////////
 // Update keyboard properties
 ///////////////////////////
-mge._keyboard._update = function() {
+//mge._keyboard._update = function() {
 
     // Set list of pressed keys
-    this._keyPressed = this._keyPressedDetected.slice()
+//    this._keyPressed = this._keyPressedDetected.slice()
 
-}
+//}
  ///////////////////////////
 // Create the keayboard
 ///////////////////////////
-mge._keyboard._create = function() {
+//mge._keyboard._create = function() {
 
     // Properties
-    this._keyPressed = []
-    this._keyPressedDetected = []
+//    this._keyPressed = []
+//    this._keyPressedDetected = []
 
     // Create listeners
-    document.onkeydown = function(e) {
-        mge._keyboard._onKeyDown(e)
-    }
+//    document.onkeydown = function(e) {
+//        mge._keyboard._onKeyDown(e)
+//    }
 
-    document.onkeyup = function(e) {
-        mge._keyboard._onKeyUp(e)
-    }
+//    document.onkeyup = function(e) {
+//        mge._keyboard._onKeyUp(e)
+//    }
 
-}
+//}
 ///////////////////////////
 // Create the loop
 ///////////////////////////
@@ -682,14 +684,14 @@ mge._loop._tick = function () {
 
         // Get mouse & keyboard information
         mge._mouse._update() 
-        mge._keyboard._update() 
+//        mge._keyboard._update() 
 
         // Check if the scene must change
         if (mge._game._curScene != mge._game._nextScene) {
             // Update curScene, reset controls and launch the start function of the new scene
             mge._game._curScene = mge._game._nextScene
             mge._mouse._reset()
-            mge._keyboard._reset()
+//            mge._keyboard._reset()
             mge._game._curScene.start()
         }
 
@@ -725,35 +727,35 @@ mge._loop._tick = function () {
 ///////////////////////////
 // Create the camera
 ///////////////////////////
-mge._camera._create = function() {
+//mge._camera._create = function() {
 
     // Properties
-    this._x = mge.game.width/2
-    this._y = mge.game.height/2
-    this._zoom = 1
+//    this._x = mge.game.width/2
+//    this._y = mge.game.height/2
+//    this._zoom = 1
 
-}
+//}
 
 ///////////////////////////
 // World to screen
 ///////////////////////////
-mge._camera._worldToScreen = function(_sprite) {
-    let _result = {}
+//mge._camera._worldToScreen = function(_sprite) {
+//    let _result = {}
     // If scroll factor =0, the sprite remains un changed
-    if (_sprite._scrollFactor == 0) {
-        _result._scaleXScreen = _sprite._scaleX
-        _result._scaleYScreen = _sprite._scaleY
-        _result._xScreen = _sprite._x
-        _result._yScreen = _sprite._y
-    } else {
+//    if (_sprite._scrollFactor == 0) {
+//        _result._scaleXScreen = _sprite._scaleX
+//        _result._scaleYScreen = _sprite._scaleY
+//        _result._xScreen = _sprite._x
+//        _result._yScreen = _sprite._y
+//    } else {
         // Else it position and size is imapcted
-        _result._xScreen = (_sprite._x - (mge._camera._x - mge.game.width/2) * _sprite._scrollFactor) * mge._camera._zoom + mge.game.width/2
-        _result._yScreen = (_sprite._y - (mge._camera._y - mge.game.height/2) * _sprite._scrollFactor) * mge._camera._zoom + mge.game.height/2
-        _result._scaleXScreen = _sprite._scaleX * mge._camera._zoom * _sprite._scrollFactor
-        _result._scaleYScreen = _sprite._scaleY * mge._camera._zoom * _sprite._scrollFactor
-    }
-   return _result
-}
+//        _result._xScreen = (_sprite._x - (mge._camera._x - mge.game.width/2) * _sprite._scrollFactor) * mge._camera._zoom + mge.game.width/2
+//        _result._yScreen = (_sprite._y - (mge._camera._y - mge.game.height/2) * _sprite._scrollFactor) * mge._camera._zoom + mge.game.height/2
+//        _result._scaleXScreen = _sprite._scaleX * mge._camera._zoom * _sprite._scrollFactor
+//        _result._scaleYScreen = _sprite._scaleY * mge._camera._zoom * _sprite._scrollFactor
+//    }
+//   return _result
+//}
 
 ///////////////////////////
 // Event handler onmouseclick
@@ -766,9 +768,9 @@ mge._mouse._onClick = function(e) {
 ///////////////////////////
 // Event handler onmousedown
 ///////////////////////////
-mge._mouse._onDown = function(e) {
-    this._downDetected = true
-}
+//mge._mouse._onDown = function(e) {
+//    this._downDetected = true
+//}
 ///////////////////////////
 // Event handler onmousemouve
 ///////////////////////////
@@ -782,14 +784,14 @@ mge._mouse._onMove = function(e) {
 mge._mouse._onOut = function(e) {
     this._xDetected = ''
     this._yDetected = ''
-    this._upDetected = true
+//    this._upDetected = true
 }
 ///////////////////////////
 // Event handler onmouseup
 ///////////////////////////
-mge._mouse._onUp = function(e) {
-    this._upDetected = true
-}
+//mge._mouse._onUp = function(e) {
+//    this._upDetected = true
+//}
 ///////////////////////////
 // Reset mouse information
 ///////////////////////////
@@ -797,15 +799,15 @@ mge._mouse._reset = function() {
     this._x = 0
     this._y = 0
     this._isClicked = false
-    this._isDown = false
-    this._isUp = true
-    this._isPressed = false
-    this._isReleased = false
+//    this._isDown = false
+//    this._isUp = true
+//    this._isPressed = false
+//    this._isReleased = false
     this._xDetected = 0
     this._yDetected = 0
     this._clickDetected = false
-    this._downDetected = false
-    this._upDetected = false
+//    this._downDetected = false
+//    this._upDetected = false
 }
 ///////////////////////////
 // Update mouse properties
@@ -821,22 +823,22 @@ mge._mouse._update = function() {
     this._clickDetected = false
 
     // Take into account mouse down
-    this._isPressed = false
-    if (this._downDetected) {
-        this._isDown = true
-        this._isUp = false
-        this._downDetected = false    
-        this._isPressed = true
-    }
+//    this._isPressed = false
+//    if (this._downDetected) {
+//        this._isDown = true
+//        this._isUp = false
+//        this._downDetected = false    
+//        this._isPressed = true
+//    }
 
     // Take into account mouse up
-    this._isReleased = false
-    if (this._upDetected) {
-        this._isDown = false
-        this._isUp = true
-        this._upDetected = false
-        this._isReleased = true
-    }
+//    this._isReleased = false
+//    if (this._upDetected) {
+//        this._isDown = false
+//        this._isUp = true
+//        this._upDetected = false
+//        this._isReleased = true
+//    }
 
 }
 ///////////////////////////
@@ -848,36 +850,36 @@ mge._mouse._create = function(_HtmlCanvas) {
     this._x = 0
     this._y = 0
     this._isClicked = false
-    this._isDown = false
-    this._isUp = true
-    this._isPressed = false
-    this._isReleased = false
+//    this._isDown = false
+//    this._isUp = true
+//    this._isPressed = false
+//    this._isReleased = false
     this._xDetected = 0
     this._yDetected = 0
     this._clickDetected = false
-    this._downDetected = false
-    this._upDetected = false
+//    this._downDetected = false
+//    this._upDetected = false
 
     // Create listeners
     _HtmlCanvas.onclick = function(e) {
         mge._mouse._onClick(e)
     }
 
-    _HtmlCanvas.onmousemove = function(e) {
-        mge._mouse._onMove(e)
-    }
+//    _HtmlCanvas.onmousemove = function(e) {
+//        mge._mouse._onMove(e)
+//    }
     
-    _HtmlCanvas.onmouseout = function(e) {
-        mge._mouse._onOut(e)
-    }
+//    _HtmlCanvas.onmouseout = function(e) {
+//        mge._mouse._onOut(e)
+//    }
 
-    _HtmlCanvas.onmousedown = function(e) {
-        mge._mouse._onDown(e)
-    }
+//    _HtmlCanvas.onmousedown = function(e) {
+//        mge._mouse._onDown(e)
+//    }
 
-    _HtmlCanvas.onmouseup = function(e) {
-        mge._mouse._onUp(e)
-    }
+//    _HtmlCanvas.onmouseup = function(e) {
+//        mge._mouse._onUp(e)
+//    }
 
 }
 ///////////////////////////
@@ -895,18 +897,16 @@ mge._sprite._create = function(_ctx) {
     this._scaleX = 1
     this._scaleY = 1
     this._isVisible = true
-    this._drawBoundaries = false
+//    this._drawBoundaries = false
 
     // Properties for mouse
-    this._dragState = false
-    this._selectState = false
+//    this._dragState = false
+//    this._selectState = false
 
     // Clone properties
     this._clonesList = []
     this._cloneIsValid = false
 
-    // Properties fpr Camera
-    this._scrollFactor = 0
 
 }
 ///////////////////////////
@@ -920,25 +920,22 @@ mge._sprite._draw = function() {
         // Shortcuts
         let _ctx = this._ctx
 
-        // Get screen values
-        let _s = mge._camera._worldToScreen(this)
-
         // Save context
         _ctx.save()
 
         // Apply transformations
-        _ctx.translate(_s._xScreen - this._width * _s._scaleXScreen / 2, _s._yScreen - this._height * _s._scaleYScreen / 2)
-        _ctx.scale(_s._scaleXScreen, _s._scaleYScreen)
+        _ctx.translate(this._x - this._width * this._scaleX / 2, this._y - this._height * this._scaleY / 2)
+        _ctx.scale(this._scaleX, this._scaleY)
 
         // Draw
         this._drawFunction(_ctx)   
 
         // Draw boundaries if needed
-        if (this._drawBoundaries) {
-            _ctx.strokeStyle = 'red'
-            _ctx.strokeRect(0, 0, this._width, this._height)
-            _ctx.strokeRect(this._width / 2, this._height / 2, 1, 1)
-        }
+//        if (this._drawBoundaries) {
+//            _ctx.strokeStyle = 'red'
+//            _ctx.strokeRect(0, 0, this._width, this._height)
+//            _ctx.strokeRect(this._width / 2, this._height / 2, 1, 1)
+//        }
 
         // Restore context
         _ctx.restore()
@@ -961,81 +958,54 @@ mge._sprite._isClicked = function() {
 // Check if the sprite is
 // being draged
 ///////////////////////////
-mge._sprite._isDragged = function() {
+//mge._sprite._isDragged = function() {
 
     // Start dragging
-    if (this._isTouched() && mge._mouse._isPressed ) {
-        this._dragState = true
-    } 
+//    if (this._isTouched() && mge._mouse._isPressed ) {
+//        this._dragState = true
+//    } 
 
     // Continue dragging
-    if (this._dragState && mge._mouse._isDown ) {
-        this._dragState = true
-    } else {
-        this._dragState = false
-    }
+//    if (this._dragState && mge._mouse._isDown ) {
+//        this._dragState = true
+//    } else {
+//        this._dragState = false
+//    }
 
     // Return dragging state
-    return this._dragState
-}
+//    return this._dragState
+//}
 ///////////////////////////
 // Check if the sprite is
 // selected
 ///////////////////////////
-mge._sprite._isSelected = function() {
+//mge._sprite._isSelected = function() {
 
     // Click the sprite
-    if (this._isTouched() && mge._mouse._isPressed ) {
-        this._selectState = true
-    } 
+//    if (this._isTouched() && mge._mouse._isPressed ) {
+//        this._selectState = true
+//    } 
     
     // Click outside the sprite
-    if (!this._isTouched() && mge._mouse._isPressed ) {
-        this._selectState = false
-    } 
+//    if (!this._isTouched() && mge._mouse._isPressed ) {
+//        this._selectState = false
+//    } 
 
     // Return dragging state
-    return this._selectState
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Check if the sprite is colliding with another sprite.
-// The collision detection is based on width and height (box collision)
-// Only sprites with the same scrollFactor (wich can be seen as a representation of z axis) can collide
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-mge._sprite._isColliding = function(_spriteToCheck) {
-
-    if (_spriteToCheck._scrollFactor != this._scrollFactor) {
-        return false
-    } else {
-        // Calculate min distance between sprites without collision
-        let _minXDistance = (this._width / 2) * this._scaleX + (_spriteToCheck._width / 2) * _spriteToCheck._scaleX
-        let _minYDistance = (this._height / 2) * this._scaleY + (_spriteToCheck._height / 2) * _spriteToCheck._scaleY
-        // Calculate real distance between the 2 sprites
-        let _realXDistance = Math.abs(this._x - _spriteToCheck._x)
-        let _realYDistance = Math.abs(this._y - _spriteToCheck._y)
-        // Check collision
-    if (_realXDistance < _minXDistance && _realYDistance < _minYDistance) {
-            return true
-        } else {
-            return false
-        }
-    }
-}
+//    return this._selectState
+//}
 ///////////////////////////
 // Check if the sprite is
 // touch for given x and y
 ///////////////////////////
 mge._sprite._isTouched = function() {
 
-    // Get screen values
-    let _s = mge._camera._worldToScreen(this)
-
     // Calculate sprite min and max coordinates
     // based in its width and height
-    let _xMaxSprite = _s._xScreen + (this._width / 2) * _s._scaleXScreen
-    let _xMinSprite = _s._xScreen - (this._width / 2) * _s._scaleXScreen
-    let _yMaxSprite = _s._yScreen + (this._height / 2) * _s._scaleYScreen
-    let _yMinSprite = _s._yScreen - (this._height / 2) * _s._scaleYScreen
+    let _xMaxSprite = this._x + (this._width / 2) * this._scaleX
+    let _xMinSprite = this._x - (this._width / 2) * this._scaleX
+    let _yMaxSprite = this._y + (this._height / 2) * this._scaleY
+    let _yMinSprite = this._y - (this._height / 2) * this._scaleY
 
     // Check if inside
     if (mge._mouse._x >= _xMinSprite && mge._mouse._x <= _xMaxSprite && mge._mouse._y >= _yMinSprite && mge._mouse._y <= _yMaxSprite) {
@@ -1044,6 +1014,7 @@ mge._sprite._isTouched = function() {
         return false
     }
 }
+
 ///////////////////////////
 // Clean the list of clones
 // (deletes items for which
@@ -1120,21 +1091,21 @@ mge._sprite._cloneExecuteForEach = function(_method) {
 // Check if the sprite is collinding with clones of another srpite.
 // Returns the list of clones colliding with him
 /////////////////////////////////////////////////////////////////////
-mge._sprite._listCollisionsWithClones = function(_spriteToCheck) {
+//mge._sprite._listCollisionsWithClones = function(_spriteToCheck) {
 
     // Create an empty array to store the touched clones
-    let _touchedClones = []
+//    let _touchedClones = []
 
     // Add in this array the clones that are touched
-    _spriteToCheck._clonesList.forEach(_clone => {
-        if (this._isColliding(_clone)) {
-            _touchedClones.push(_clone)
-        }
-    })
+//    _spriteToCheck._clonesList.forEach(_clone => {
+//        if (this._isColliding(_clone)) {
+//            _touchedClones.push(_clone)
+//        }
+//    })
 
     // Return the list of clones touhced by the sprite
-    return _touchedClones
-}
+//    return _touchedClones
+//}
 ///////////////////////////
 // Create a standard osc
 ///////////////////////////

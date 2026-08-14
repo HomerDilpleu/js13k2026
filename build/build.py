@@ -222,6 +222,7 @@ stringsToUglify+=['playButton']
 #########################################
 stringsToUglify+=['pitchADSR','detuneADSR','filterFreqADSR','filterQADSR','noise','GAME_RENDER_CANVAS','_method','started','stopped','_nbBars','_point']
 stringsToUglify+=['_activateOwnCloneAnimation','_detune']
+stringsToUglify+=['_mode','_timer']
 
 
 outputFile='main.js'
