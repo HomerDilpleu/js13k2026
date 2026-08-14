@@ -6,8 +6,12 @@ game = {
     main : {}
   },
   sprites:{
-    playButton: mge.game.createSprite()
+    playButton: mge.game.createSprite(),
+    target: mge.game.createSprite()
   },
+  CONST:{
+    caseSize:40
+  }, 
   variables:{},
   instruments:{}
 }
