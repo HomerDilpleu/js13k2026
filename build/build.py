@@ -7,7 +7,7 @@ inputFiles = ['../src/lib/mge_V1.5.0.js',\
               '../src/scenes/boot.js',\
               '../src/scenes/main.js',\
               '../src/sprites/playButton.js',\
-              '../src/sprites/target.js'\
+              '../src/sprites/component.js'\
               ]
 
 stringsToUglify=[]
@@ -206,8 +206,8 @@ stringsToUglify+=['gridCellSize','hColors','gridToCoordinate']
 # scenes / main.js
 # TO DO 
 
-# sprites / target.js
-stringsToUglify+=['target','isConnected','_coord']
+# sprites / component.js
+stringsToUglify+=['component','isConnected','_coord','hColor']
 
 # sprites / playButton.js
 stringsToUglify+=['playButton']

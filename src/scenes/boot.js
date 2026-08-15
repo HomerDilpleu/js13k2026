@@ -5,7 +5,7 @@ game.scenes.boot.start = function() {
 
     // Init sprites
     game.sprites.playButton.init()
-    game.sprites.target.init()
+    game.sprites.component.init()
 
 }
 

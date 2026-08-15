@@ -7,14 +7,13 @@ game.scenes.main.start = function() {
         //mge.sequencer.start()
 
         // Create clones
-        game.sprites.target.cloneDeleteAll()
-        game.sprites.target.initClone({col:16,line:1,color:'red'})
-        game.sprites.target.initClone({col:16,line:2,color:'oran'})
-        game.sprites.target.initClone({col:16,line:3,color:'yell'})
-        game.sprites.target.initClone({col:16,line:4,color:'gree'})
-        game.sprites.target.initClone({col:16,line:5,color:'cyan'})
-        game.sprites.target.initClone({col:16,line:6,color:'blue'})
-        game.sprites.target.initClone({col:16,line:7,color:'mage'})
+        game.sprites.component.initClone('target',16,1,{color:'red'})
+        game.sprites.component.initClone('target',16,2,{color:'oran'})
+        game.sprites.component.initClone('target',16,3,{color:'yell'})
+        game.sprites.component.initClone('target',16,4,{color:'gree'})
+        game.sprites.component.initClone('target',16,5,{color:'cyan'})
+        game.sprites.component.initClone('target',16,6,{color:'blue'})
+        game.sprites.component.initClone('target',16,7,{color:'mage'})
 }
 
 //////////////////////
@@ -47,6 +46,6 @@ game.scenes.main.draw = function() {
         ///////////////////////////////////
         ///////////////////////////////////
 
-        game.sprites.target.cloneExecuteForEach('draw')
+        game.sprites.component.cloneExecuteForEach('draw')
 
 }
