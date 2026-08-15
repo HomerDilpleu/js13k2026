@@ -5,6 +5,7 @@ game.sprites.target.init = function() {
     this.height = game.CONST.gridCellSize
     this.isConnected = false
     this.isVisible = false
+    this.type = 'target'
 }
 
 game.sprites.target.initClone = function (_config) {
@@ -19,6 +20,8 @@ game.sprites.target.initClone = function (_config) {
     clone.x = _coord.x
     clone.y = _coord.y
     clone.hColor = game.CONST.hColors.get(_config.color)
+    // Update grid
+    game.variables.grid[_config.col][_config.line] = clone
 }
 
 game.sprites.target.update = function () {

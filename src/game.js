@@ -19,7 +19,9 @@ game = {
                       ['blue', 240],
                       ['mage', 275]])
   }, 
-  variables:{},
+  variables:{
+    grid:Array.from({length: 32}, () => Array(18).fill(''))
+  },
   instruments:{},
   tools:{
     gridToCoordinate: function (col,line) {
