@@ -6,6 +6,9 @@ game.scenes.main.start = function() {
         // Play the song 
         //mge.sequencer.start()
 
+        // Init grid
+        game.variables.grid = Array.from({length: game.CONST.gridNbCols}, () => Array(game.CONST.gridNbLines).fill(''))
+
         // Create clones
         // Targets
         game.sprites.component.initClone('target',16,1,{color:'red'})
@@ -23,10 +26,9 @@ game.scenes.main.start = function() {
         game.sprites.component.initClone('source',13,5,{color:'cyan',rotation:90})
         game.sprites.component.initClone('source',19,6,{color:'blue',rotation:180})
         game.sprites.component.initClone('source',13,7,{color:'mage',rotation:0})
-        // rays
-        game.sprites.ray.initClone([13,1],[16,1],'red')
-        game.sprites.ray.initClone([19,2],[16,2],'oran')
-        game.sprites.ray.initClone([13,3],[16,3],'yell')
+
+        // Force system update
+        game.system.update()
 
 }
 
@@ -55,8 +57,8 @@ game.scenes.main.draw = function() {
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 1
         let gridCellSize = game.CONST.gridCellSize
-        let nbCols = mge.game.width / gridCellSize
-        let nbLines = mge.game.height / gridCellSize
+        let nbCols = game.CONST.gridNbCols
+        let nbLines =game.CONST.gridNbLines
         for (let col = 0; col < nbCols; col++) {
                 for (let line = 0; line < nbLines; line++) {
                         ctx.strokeRect(col*gridCellSize,line*gridCellSize,gridCellSize,gridCellSize)

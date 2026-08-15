@@ -25,16 +25,16 @@ game.sprites.component.initClone = function (_type,_col,_line,_config) {
     clone.isReached = false
     // Get orientation (not used by target)
     clone.rotation = _config.rotation || 0
-    // Create inputs and outputs
-    clone.inputs = []
-    clone.outputs = []
+    // Create input and output flows
+    clone.inputFlows = []
+    clone.outputFlows = []
 }
 
 game.sprites.component.update = function () {
     if (this.isClicked && this.type != 'target') {
         // Manage rotation
         this.rotation += 90
-        if (this.rotaton > 360) {this.rotation = 0}
+        if (this.rotation >= 360) {this.rotation = 0}
         // Ask to update system
         game.variables.needToUpdateSystem = true
     }
@@ -43,10 +43,19 @@ game.sprites.component.update = function () {
 game.sprites.component.updateSystem = function () {
     // SOURCE
     if (this.type == 'source') {
-        this.outputs = [{startCell:this.cell,color:this.color,direction:this.rotation}]
+        this.outputFlows = [{startCell:this.cell,color:this.color,direction:this.rotation}]
+    }
+    // TARGET
+    if (this.type == 'target') {
+        // No output flows
+        this.outputFlows = []
+        // Update isReached flag
+        this.inputFlows.forEach((_flow) => {
+            if(_flow.color == this.color) {this.isReached = true}
+        })
     }
     // Return the outputs
-    return this.outputs
+    return this.outputFlows
 }
 
 
@@ -60,7 +69,7 @@ game.sprites.component.drawFunction = function (ctx) {
     if (this.type == 'target') {
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 2
-        if (this.isConnected) {
+        if (this.isReached) {
             ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
         } else {
             ctx.fillStyle = game.tools.hsla(this.hColor,30,50,100)

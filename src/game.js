@@ -12,6 +12,9 @@ game = {
   },
   CONST:{
     gridCellSize:40,
+    gridNbCols:32,
+    gridNbLines:18,
+    rayMaxLength:5,
     hColors: new Map([['red', 0],
                       ['oran', 30],
                       ['yell', 60],
@@ -21,7 +24,7 @@ game = {
                       ['mage', 275]])
   }, 
   variables:{
-    grid:Array.from({length: 32}, () => Array(18).fill('')),
+    grid:[],
     needToUpdateSystem: false
   },
   instruments:{},
