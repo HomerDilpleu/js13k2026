@@ -20,7 +20,8 @@ game = {
                       ['mage', 275]])
   }, 
   variables:{
-    grid:Array.from({length: 32}, () => Array(18).fill(''))
+    grid:Array.from({length: 32}, () => Array(18).fill('')),
+    needToUpdateSystem: false
   },
   instruments:{},
   tools:{
