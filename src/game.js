@@ -7,7 +7,8 @@ game = {
   },
   sprites:{
     playButton: mge.game.createSprite(),
-    component: mge.game.createSprite()
+    component: mge.game.createSprite(),
+    ray: mge.game.createSprite()
   },
   CONST:{
     gridCellSize:40,

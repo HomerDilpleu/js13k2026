@@ -23,6 +23,11 @@ game.scenes.main.start = function() {
         game.sprites.component.initClone('source',13,5,{color:'cyan',rotation:90})
         game.sprites.component.initClone('source',19,6,{color:'blue',rotation:180})
         game.sprites.component.initClone('source',13,7,{color:'mage',rotation:0})
+        // rays
+        game.sprites.ray.initClone([13,1],[16,1],'red')
+        game.sprites.ray.initClone([19,2],[16,2],'oran')
+        game.sprites.ray.initClone([13,3],[16,3],'yell')
+
 }
 
 //////////////////////
@@ -57,6 +62,7 @@ game.scenes.main.draw = function() {
         ///////////////////////////////////
         ///////////////////////////////////
 
+        game.sprites.ray.cloneExecuteForEach('draw')
         game.sprites.component.cloneExecuteForEach('draw')
 
 }

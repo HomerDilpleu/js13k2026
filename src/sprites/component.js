@@ -2,6 +2,7 @@ game.sprites.component.init = function() {
     this.width = game.CONST.gridCellSize
     this.height = game.CONST.gridCellSize
     this.isVisible = false
+    this.drawBoundaries = true
 }
 
 game.sprites.component.initClone = function (_type,_col,_line,_config) {
