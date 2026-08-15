@@ -31,6 +31,24 @@ game.scenes.main.update = function() {
 //////////////////////
 game.scenes.main.draw = function() {
 
+        ///////////////////////////////////
+        // TO REMOVE - GRID DEBUG
+        ///////////////////////////////////
+        //let ctx = mge.game.context 
+        let ctx = mge._canvas._renderContext
+        ctx.strokeStyle = 'black'
+        ctx.lineWidth = 1
+        let caseSize = game.CONST.caseSize
+        let nbCols = mge.game.width / caseSize
+        let nbLines = mge.game.height / caseSize
+        for (let col = 0; col < nbCols; col++) {
+                for (let line = 0; line < nbLines; line++) {
+                        ctx.strokeRect(col*caseSize,line*caseSize,caseSize,caseSize)
+                }
+        }
+        ///////////////////////////////////
+        ///////////////////////////////////
+
         game.sprites.target.cloneExecuteForEach('draw')
 
 }
