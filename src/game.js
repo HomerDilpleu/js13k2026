@@ -10,10 +10,38 @@ game = {
     target: mge.game.createSprite()
   },
   CONST:{
-    caseSize:40
+    gridCellSize:40,
+    hColors: new Map([
+      ['red', 0],
+      ['orange', 30],
+      ['yellow', 60],
+      ['green', 120],
+      ['cyan', 180],
+      ['blue', 240],
+      ['magenta', 275]    
+    ])
+
+/*
+    colors:{
+      red:0,
+      orange:30,
+      yellow:60,
+      green:120,
+      cyan:180,
+      blue:240,
+      magenta:275
+    }*/
   }, 
   variables:{},
-  instruments:{}
+  instruments:{},
+  tools:{
+    gridToCoordinate: function (col,line) {
+      let x = game.CONST.gridCellSize * (col+0.5)
+      let y = game.CONST.gridCellSize * (line+0.5)
+      return {x,y}
+    },
+    hsla:function(h,s,l,a) {return 'hsl('+h+' '+s+'% '+l+'% / '+a+'%)'}
+  }
 }
 
 // Remove "Loading" div and start the game

@@ -6,17 +6,15 @@ game.scenes.main.start = function() {
         // Play the song 
         //mge.sequencer.start()
 
-        // Init sprites
-        game.sprites.target.init()
-
         // Create clones
         game.sprites.target.cloneDeleteAll()
-        game.sprites.target.initClone({x:640,y:20,color:'red'})
-        game.sprites.target.initClone({x:640,y:60,color:'yellow'})
-        game.sprites.target.initClone({x:640,y:100,color:'blue'})
-
-
-
+        game.sprites.target.initClone({col:16,line:1,color:'red'})
+        game.sprites.target.initClone({col:16,line:2,color:'orange'})
+        game.sprites.target.initClone({col:16,line:3,color:'yellow'})
+        game.sprites.target.initClone({col:16,line:4,color:'green'})
+        game.sprites.target.initClone({col:16,line:5,color:'cyan'})
+        game.sprites.target.initClone({col:16,line:6,color:'blue'})
+        game.sprites.target.initClone({col:16,line:7,color:'magenta'})
 }
 
 //////////////////////
@@ -38,12 +36,12 @@ game.scenes.main.draw = function() {
         let ctx = mge._canvas._renderContext
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 1
-        let caseSize = game.CONST.caseSize
-        let nbCols = mge.game.width / caseSize
-        let nbLines = mge.game.height / caseSize
+        let gridCellSize = game.CONST.gridCellSize
+        let nbCols = mge.game.width / gridCellSize
+        let nbLines = mge.game.height / gridCellSize
         for (let col = 0; col < nbCols; col++) {
                 for (let line = 0; line < nbLines; line++) {
-                        ctx.strokeRect(col*caseSize,line*caseSize,caseSize,caseSize)
+                        ctx.strokeRect(col*gridCellSize,line*gridCellSize,gridCellSize,gridCellSize)
                 }
         }
         ///////////////////////////////////
