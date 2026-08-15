@@ -10,6 +10,8 @@ game.sprites.component.initClone = function (_type,_col,_line,_config) {
     let clone = this.cloneCreate()
     clone.isVisible = true
     clone.type = _type
+    // Get the cell
+    clone.cell = [_col,_line]
     // Calculate clone location 
     let _coord = game.tools.gridToCoordinate(_col,_line)
     clone.x = _coord.x
@@ -38,6 +40,16 @@ game.sprites.component.update = function () {
     }
 }
 
+game.sprites.component.updateSystem = function () {
+    // SOURCE
+    if (this.type == 'source') {
+        this.outputs = [{startCell:this.cell,color:this.color,direction:this.rotation}]
+    }
+    // Return the outputs
+    return this.outputs
+}
+
+
 game.sprites.component.drawFunction = function (ctx) {
     ctx.save()
     // Manage rotation
@@ -63,7 +75,7 @@ game.sprites.component.drawFunction = function (ctx) {
         ctx.lineWidth = 2
         ctx.fillRect(0,0,this.width,this.height)
         ctx.strokeRect(0,0,this.width,this.height)
-        ctx.strokeRect(15,5,10,10)
+        ctx.strokeRect(25,15,10,10)
     }
     ctx.restore()
 

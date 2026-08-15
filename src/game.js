@@ -25,6 +25,7 @@ game = {
     needToUpdateSystem: false
   },
   instruments:{},
+  system:{},
   tools:{
     gridToCoordinate: function (col,line) {
       let x = game.CONST.gridCellSize * (col+0.5)

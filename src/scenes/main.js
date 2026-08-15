@@ -34,9 +34,12 @@ game.scenes.main.start = function() {
 // Update scene
 //////////////////////
 game.scenes.main.update = function() {
-
+        // Check if the user has clicked on an object
         game.sprites.component.cloneExecuteForEach('update')
-
+        // If yes, update the system
+        if (game.variables.needToUpdateSystem) {
+                game.system.update()
+        }
 }
 
 //////////////////////
