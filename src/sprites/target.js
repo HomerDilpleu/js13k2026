@@ -15,9 +15,9 @@ game.sprites.target.initClone = function (_config) {
     clone.line = _config.line
     clone.color = _config.color
     // Calculations
-    let coord = game.tools.gridToCoordinate(_config.col,_config.line)
-    clone.x = coord.x
-    clone.y = coord.y
+    let _coord = game.tools.gridToCoordinate(_config.col,_config.line)
+    clone.x = _coord.x
+    clone.y = _coord.y
     clone.hColor = game.CONST.hColors.get(_config.color)
 }
 

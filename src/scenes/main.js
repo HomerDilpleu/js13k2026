@@ -9,12 +9,12 @@ game.scenes.main.start = function() {
         // Create clones
         game.sprites.target.cloneDeleteAll()
         game.sprites.target.initClone({col:16,line:1,color:'red'})
-        game.sprites.target.initClone({col:16,line:2,color:'orange'})
-        game.sprites.target.initClone({col:16,line:3,color:'yellow'})
-        game.sprites.target.initClone({col:16,line:4,color:'green'})
+        game.sprites.target.initClone({col:16,line:2,color:'oran'})
+        game.sprites.target.initClone({col:16,line:3,color:'yell'})
+        game.sprites.target.initClone({col:16,line:4,color:'gree'})
         game.sprites.target.initClone({col:16,line:5,color:'cyan'})
         game.sprites.target.initClone({col:16,line:6,color:'blue'})
-        game.sprites.target.initClone({col:16,line:7,color:'magenta'})
+        game.sprites.target.initClone({col:16,line:7,color:'mage'})
 }
 
 //////////////////////

@@ -11,26 +11,13 @@ game = {
   },
   CONST:{
     gridCellSize:40,
-    hColors: new Map([
-      ['red', 0],
-      ['orange', 30],
-      ['yellow', 60],
-      ['green', 120],
-      ['cyan', 180],
-      ['blue', 240],
-      ['magenta', 275]    
-    ])
-
-/*
-    colors:{
-      red:0,
-      orange:30,
-      yellow:60,
-      green:120,
-      cyan:180,
-      blue:240,
-      magenta:275
-    }*/
+    hColors: new Map([['red', 0],
+                      ['oran', 30],
+                      ['yell', 60],
+                      ['gree', 120],
+                      ['cyan', 180],
+                      ['blue', 240],
+                      ['mage', 275]])
   }, 
   variables:{},
   instruments:{},

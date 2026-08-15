@@ -6,7 +6,8 @@ inputFiles = ['../src/lib/mge_V1.5.0.js',\
               '../src/assets/sounds.js',\
               '../src/scenes/boot.js',\
               '../src/scenes/main.js',\
-              '../src/sprites/playButton.js'\
+              '../src/sprites/playButton.js',\
+              '../src/sprites/target.js'\
               ]
 
 stringsToUglify=[]
@@ -193,23 +194,20 @@ stringsToUglify+=['cloneExecuteForEach','listCollisionsWithClones']
 #########################################
 #########################################
 # game.js
-stringsToUglify+=['game','scenes','boot','main','images','animations','sprites','variables','instruments','songs','utils']
+stringsToUglify+=['game','scenes','boot','main','images','animations','sprites','variables','instruments','songs','tools']
+stringsToUglify+=['gridCellSize','hColors','gridToCoordinate']
 
-# assets / animations.js
-stringsToUglify+=['playButtonAnimation']
+# assets / sounds
+# TO DO 
 
-# assets / images.js
-stringsToUglify+=['logoDilpleu','playButtonDark','playButton']
+# scenes / boot.js
+# TO DO 
 
-# assets / instruments.js
-stringsToUglify+=['preRenderedSounds','standardOsc','octave','volumeADSR','detuneADSR','filterType','filterADSR','reverb','oscGain','oscFilter','_delay','_feedbackGain']
-stringsToUglify+=['getBufferId','preRender','playLive','playPreRendered','bass','arpege','lead']
+# scenes / main.js
+# TO DO 
 
-# songs / instruments.js
-stringsToUglify+=['mainSong']
-
-# sprites / logoDlpleu.js
-stringsToUglify+=['logoDilpleu']
+# sprites / target.js
+stringsToUglify+=['target','isConnected','_coord']
 
 # sprites / playButton.js
 stringsToUglify+=['playButton']
