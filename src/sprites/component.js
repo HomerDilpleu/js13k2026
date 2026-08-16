@@ -54,6 +54,35 @@ game.sprites.component.updateSystem = function () {
             if(_flow.color == this.color) {this.isReached = true}
         })
     }
+    // MIRROR
+    if (this.type == 'mirror') {
+        // If has no input
+        if (this.inputFlows.length <1) {
+            this.outputFlows = []
+        } else {
+            // Calculate output flow for each input
+            this.inputFlows.forEach((_flow) => {
+                let _flowDirection = 'x'
+                // Input flow going left
+                if (_flow.direction == 0 && this.rotation == 180) {_flowDirection = 90}
+                if (_flow.direction == 0 && this.rotation == 270) {_flowDirection = 270}
+                // Input flow going down
+                if (_flow.direction == 90 && this.rotation == 0) {_flowDirection = 0}
+                if (_flow.direction == 90 && this.rotation == 270) {_flowDirection = 180}
+                // Input flow going right
+                if (_flow.direction == 180 && this.rotation == 0) {_flowDirection = 270}
+                if (_flow.direction == 180 && this.rotation == 90) {_flowDirection = 90}
+                // Input flow going up
+                if (_flow.direction == 270 && this.rotation == 90) {_flowDirection = 0}
+                if (_flow.direction == 270 && this.rotation == 180) {_flowDirection = 180}
+                // Add the flow if has a valid direction
+                if (_flowDirection != 'x') {
+                    this.outputFlows.push({startCell:this.cell,color:_flow.color,direction:_flowDirection})
+                }
+            })
+        }
+    }
+    
     // Return the outputs
     return this.outputFlows
 }
@@ -85,6 +114,19 @@ game.sprites.component.drawFunction = function (ctx) {
         ctx.fillRect(0,0,this.width,this.height)
         ctx.strokeRect(0,0,this.width,this.height)
         ctx.strokeRect(25,15,10,10)
+    }
+    // MIRROR
+    if (this.type == 'mirror') {
+        ctx.strokeStyle = 'black'
+        ctx.fillStyle = 'grey'
+        ctx.lineWidth = 2
+        ctx.beginPath()
+        ctx.moveTo(0,0)
+        ctx.lineTo(40,40)
+        ctx.lineTo(0,40)
+        ctx.closePath()
+        ctx.stroke()
+        ctx.fill()
     }
     ctx.restore()
 
