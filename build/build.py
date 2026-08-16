@@ -204,7 +204,7 @@ stringsToUglify+=['gridToCoordinate']
 stringsToUglify+=['curLevelNbParts','curLevelPart','curLevel']
 
 # assets / sounds.js
-# TO DO 
+stringsToUglify+=['kick','snare','glock','lead','_empty','_pad','Track']
 
 # assets / levels.js
 stringsToUglify+=['loadLevelPart','loadLevel','_levelID','_levelPart','_partComponents','checkPartCompleted','_completed','checkLevelCompleted']
