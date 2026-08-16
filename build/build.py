@@ -8,7 +8,8 @@ inputFiles = ['../src/lib/mge_V1.5.0.js',\
               '../src/scenes/main.js',\
               '../src/sprites/playButton.js',\
               '../src/sprites/ray.js',\
-              '../src/sprites/component.js'\
+              '../src/sprites/component.js',\
+              '../src/system.js'\
               ]
 
 stringsToUglify=[]
@@ -196,7 +197,9 @@ stringsToUglify+=['cloneExecuteForEach','listCollisionsWithClones']
 #########################################
 # game.js
 stringsToUglify+=['game','scenes','boot','main','images','animations','sprites','variables','instruments','songs','tools']
-stringsToUglify+=['gridCellSize','hColors','gridToCoordinate']
+stringsToUglify+=['gridCellSize','gridNbCols','gridNbLines','rayMaxLength','hColors','mixColors','gridToCoordinate']
+stringsToUglify+=['needToUpdateSystem']
+stringsToUglify+=['gridToCoordinate']
 
 # assets / sounds
 # TO DO 
@@ -208,13 +211,21 @@ stringsToUglify+=['gridCellSize','hColors','gridToCoordinate']
 # TO DO 
 
 # sprites / component.js
-stringsToUglify+=['component','isConnected','_coord','hColor']
+stringsToUglify+=['component','isReached','_coord','hColor','cell','inputFlows','outputFlows']
+stringsToUglify+=['source','target','mirror','mixer']
+stringsToUglify+=['_flowDirection','_flow','direction','_inputColor1','_inputColor2','_inputColor3']
+stringsToUglify+=['_outputColor1','_outputColor2','_outputColor3','_outputDirecton1','_outputDirecton2','_outputDirecton3']
 
 # sprites / ray.js
 stringsToUglify+=['_startCell','_endCell','startCell','endCell','startX','startY','endX','endY']
 
 # sprites / playButton.js
 stringsToUglify+=['playButton']
+
+# system.js
+stringsToUglify+=['componentsToUpdate','_component','updateComponents','_outputFlowList','_newComponentsToUpdate']
+stringsToUglify+=['_startCell','_color','_endCellCol','_endCellLine','_endCell','getEndCell','_maxCells','_curCol']
+stringsToUglify+=['_curLine','_direction']
 
 
 #########################################
