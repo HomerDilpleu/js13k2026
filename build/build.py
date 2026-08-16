@@ -4,6 +4,7 @@ import buildUtils
 inputFiles = ['../src/lib/mge_V1.5.0.js',\
               '../src/game.js',\
               '../src/assets/sounds.js',\
+              '../src/assets/levels.js',\
               '../src/scenes/boot.js',\
               '../src/scenes/main.js',\
               '../src/sprites/playButton.js',\
@@ -200,9 +201,14 @@ stringsToUglify+=['game','scenes','boot','main','images','animations','sprites',
 stringsToUglify+=['gridCellSize','gridNbCols','gridNbLines','rayMaxLength','hColors','mixColors','gridToCoordinate']
 stringsToUglify+=['needToUpdateSystem']
 stringsToUglify+=['gridToCoordinate']
+stringsToUglify+=['curLevelNbParts','curLevelPart','curLevel']
 
-# assets / sounds
+# assets / sounds.js
 # TO DO 
+
+# assets / levels.js
+stringsToUglify+=['loadLevelPart','loadLevel','_levelID','_levelPart','_partComponents','checkPartCompleted','_completed','checkLevelCompleted']
+
 
 # scenes / boot.js
 # TO DO 
