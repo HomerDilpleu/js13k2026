@@ -5,7 +5,7 @@ game.sprites.component.init = function() {
     this.drawBoundaries = true
 }
 
-game.sprites.component.initClone = function (_type,_col,_line,_config) {
+game.sprites.component.initClone = function (_type,_col,_line,_color,_rotation) {
     // Create the clone with basic information
     let clone = this.cloneCreate()
     clone.isVisible = true
@@ -19,12 +19,12 @@ game.sprites.component.initClone = function (_type,_col,_line,_config) {
     // Insert clone in the grid
     game.variables.grid[_col][_line] = clone
     // Get color (used only be target and source)
-    clone.color = _config.color || 'NC'
-    clone.hColor = game.CONST.hColors.get(_config.color)
+    clone.color = _color
+    clone.hColor = game.CONST.hColors.get(_color)
     // Initialise flag is Reached (used only by target)
     clone.isReached = false
     // Get orientation (not used by target)
-    clone.rotation = _config.rotation || 0
+    clone.rotation = _rotation
     // Create input and output flows
     clone.inputFlows = []
     clone.outputFlows = []
