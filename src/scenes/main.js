@@ -6,32 +6,8 @@ game.scenes.main.start = function() {
         // Play the song 
         //mge.sequencer.start()
 
-        // Init grid
-        game.variables.grid = Array.from({length: game.CONST.gridNbCols}, () => Array(game.CONST.gridNbLines).fill(''))
-
-        // Create clones
-        // Targets
-        game.sprites.component.initClone('target',16,1,'red',0)
-        game.sprites.component.initClone('target',16,2,'oran',0)
-        game.sprites.component.initClone('target',16,3,'yell',0)
-        game.sprites.component.initClone('target',16,4,'gree',0)
-        game.sprites.component.initClone('target',16,5,'cyan',0)
-        game.sprites.component.initClone('target',16,6,'blue',0)
-        game.sprites.component.initClone('target',16,7,'mage',0)
-
-        //////////////////////////
-        // Mixer test unitaires
-        //////////////////////////
-       // Sources
-        game.sprites.component.initClone('source',13,5,'yell',270)
-        game.sprites.component.initClone('source',7,5,'red',270)
-        game.sprites.component.initClone('source',10,2,'blue',270)
-        game.sprites.component.initClone('source',10,8,'blue',90)
-        // Mixers
-        game.sprites.component.initClone('mixer',10,5,'x',0)
-
-        // Force system update
-        game.system.update()
+        // Load level
+        game.loadLevel(0)
 }
 
 //////////////////////
@@ -40,9 +16,16 @@ game.scenes.main.start = function() {
 game.scenes.main.update = function() {
         // Check if the user has clicked on an object
         game.sprites.component.cloneExecuteForEach('update')
-        // If yes, update the system
+        // If yes, update the system and check if part or level is completed
         if (game.variables.needToUpdateSystem) {
                 game.system.update()
+                // if level completed, load the next one
+                if (game.checkLevelCompleted()) {
+                        game.loadLevel(game.variables.curLevel+1)
+                } else {
+                        // if part of the level completes, load the next one
+                        if (game.checkPartCompleted()) {game.loadLevelPart(game.variables.curLevelPart+1) }
+                }
         }
 }
 

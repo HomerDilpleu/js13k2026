@@ -30,7 +30,10 @@ game = {
                       ['redyell', 'oran'],
                       ['redred', 'red'],
                       ['blueblue', 'blue'],
-                      ['yellyell', 'yell']])
+                      ['yellyell', 'yell']]),
+    curLevel:'',
+    curLevelPart:'',
+    curLevelNbParts:0
   }, 
   variables:{
     grid:[],
@@ -45,7 +48,8 @@ game = {
       return {x,y}
     },
     hsla:function(h,s,l,a) {return 'hsl('+h+' '+s+'% '+l+'% / '+a+'%)'}
-  }
+  },
+  levels:[]
 }
 
 // Remove "Loading" div and start the game
