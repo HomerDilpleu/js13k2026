@@ -8,7 +8,8 @@ game = {
   sprites:{
     playButton: mge.game.createSprite(),
     component: mge.game.createSprite(),
-    ray: mge.game.createSprite()
+    ray: mge.game.createSprite(),
+    rainbow:mge.game.createSprite()
   },
   CONST:{
     gridCellSize:40,
@@ -30,14 +31,22 @@ game = {
                       ['redyell', 'oran'],
                       ['redred', 'red'],
                       ['blueblue', 'blue'],
-                      ['yellyell', 'yell']]),
-    curLevel:'',
-    curLevelPart:'',
-    curLevelNbParts:0
+                      ['yellyell', 'yell']])
   }, 
   variables:{
     grid:[],
-    needToUpdateSystem: false
+    needToUpdateSystem: false,
+    colorIsReached:{
+      red:false,
+      oran:false,
+      yell:false,
+      gree:false,
+      cyan:false,
+      blue:false,
+      mage:false
+    },
+    curLevel:'',
+    curLevelPart:''
   },
   instruments:{},
   system:{},

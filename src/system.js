@@ -17,12 +17,10 @@ game.system.init = function () {
     // Delete list of components to update
     game.system.componentsToUpdate = []
     // Delete input and output of each component 
-    // + set isReached flag to false (necessary for target)
     // + put the "source" components in the list of components to update 
     game.sprites.component._clonesList.forEach((_component) => {
             _component.inputFlows = []
             _component.outputFlows = []
-            _component.isReached = false
             if (_component.type == 'source') {
                 game.system.componentsToUpdate.push(_component)
             }

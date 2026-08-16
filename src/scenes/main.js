@@ -7,7 +7,7 @@ game.scenes.main.start = function() {
         //mge.sequencer.start()
 
         // Load level
-        game.loadLevel(0)
+        game.loadLevelPart(0,0)
 }
 
 //////////////////////
@@ -21,10 +21,10 @@ game.scenes.main.update = function() {
                 game.system.update()
                 // if level completed, load the next one
                 if (game.checkLevelCompleted()) {
-                        game.loadLevel(game.variables.curLevel+1)
+                        game.loadLevelPart(game.variables.curLevel+1,0)
                 } else {
                         // if part of the level completes, load the next one
-                        if (game.checkPartCompleted()) {game.loadLevelPart(game.variables.curLevelPart+1) }
+                        if (game.checkPartCompleted()) {game.loadLevelPart(game.variables.curLevel,game.variables.curLevelPart+1) }
                 }
         }
 }
@@ -56,5 +56,6 @@ game.scenes.main.draw = function() {
 
         game.sprites.ray.cloneExecuteForEach('draw')
         game.sprites.component.cloneExecuteForEach('draw')
+        game.sprites.rainbow.draw()
 
 }

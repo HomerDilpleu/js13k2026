@@ -51,7 +51,10 @@ game.sprites.component.updateSystem = function () {
         this.outputFlows = []
         // Update isReached flag
         this.inputFlows.forEach((_flow) => {
-            if(_flow.color == this.color) {this.isReached = true}
+            if(_flow.color == this.color) {
+                this.isReached = true
+                game.variables.colorIsReached[this.color] = true
+            }
         })
     }
     // MIRROR
@@ -158,11 +161,13 @@ game.sprites.component.drawFunction = function (ctx) {
         ctx.lineWidth = 2
         if (this.isReached) {
             ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
+            ctx.fillRect(15,15,10,10)
+            ctx.strokeRect(15,15,10,10)
         } else {
             ctx.fillStyle = game.tools.hsla(this.hColor,30,50,100)
+            ctx.fillRect(0,0,this.width,this.height)
+            ctx.strokeRect(0,0,this.width,this.height)
         }
-        ctx.fillRect(0,0,this.width,this.height)
-        ctx.strokeRect(0,0,this.width,this.height)
     }
     // SOURCE
     if (this.type == 'source') {
