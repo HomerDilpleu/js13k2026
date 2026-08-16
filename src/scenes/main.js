@@ -67,6 +67,8 @@ game.scenes.main.draw = function() {
         for (let col = 0; col < nbCols; col++) {
                 for (let line = 0; line < nbLines; line++) {
                         ctx.strokeRect(col*gridCellSize,line*gridCellSize,gridCellSize,gridCellSize)
+                        ctx.font = '12px serif'
+                        ctx.fillText (col+','+line,col*gridCellSize+8,line*gridCellSize+12)
                 }
         }
         ///////////////////////////////////
