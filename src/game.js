@@ -21,7 +21,16 @@ game = {
                       ['gree', 120],
                       ['cyan', 180],
                       ['blue', 240],
-                      ['mage', 275]])
+                      ['mage', 275]]),
+    mixColors: new Map([['redblue', 'mage'],
+                      ['bluered', 'mage'],
+                      ['yellblue', 'gree'],
+                      ['blueyell', 'gree'],
+                      ['yellred', 'oran'],
+                      ['redyell', 'oran'],
+                      ['redred', 'red'],
+                      ['blueblue', 'blue'],
+                      ['yellyell', 'yell']])
   }, 
   variables:{
     grid:[],

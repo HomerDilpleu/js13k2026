@@ -69,6 +69,7 @@ game.scenes.main.start = function() {
         game.sprites.component.initClone('mixer',12,7,{rotation:0})
         game.sprites.component.initClone('mixer',10,5,{rotation:0})
 */
+/*
         //////////////////////////
         // Spliter test complexe
         //////////////////////////
@@ -78,6 +79,18 @@ game.scenes.main.start = function() {
         game.sprites.component.initClone('mixer',14,3,{rotation:180})
         game.sprites.component.initClone('mixer',14,5,{rotation:90})
         game.sprites.component.initClone('mixer',14,8,{rotation:0})
+*/
+
+        //////////////////////////
+        // Mixer test unitaires
+        //////////////////////////
+       // Sources
+        game.sprites.component.initClone('source',13,5,{color:'yell',rotation:270})
+        game.sprites.component.initClone('source',7,5,{color:'red',rotation:270})
+        game.sprites.component.initClone('source',10,2,{color:'blue',rotation:270})
+        game.sprites.component.initClone('source',10,8,{color:'blue',rotation:90})
+        // Mixers
+        game.sprites.component.initClone('mixer',10,5,{rotation:0})
 
         // Force system update
         game.system.update()

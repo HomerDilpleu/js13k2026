@@ -63,13 +63,13 @@ game.sprites.component.updateSystem = function () {
             // Calculate output flow for each input
             this.inputFlows.forEach((_flow) => {
                 let _flowDirection = 'x'
-                // Input flow going left
+                // Input flow going right
                 if (_flow.direction == 0 && this.rotation == 180) {_flowDirection = 90}
                 if (_flow.direction == 0 && this.rotation == 270) {_flowDirection = 270}
                 // Input flow going down
                 if (_flow.direction == 90 && this.rotation == 0) {_flowDirection = 0}
                 if (_flow.direction == 90 && this.rotation == 270) {_flowDirection = 180}
-                // Input flow going right
+                // Input flow going left
                 if (_flow.direction == 180 && this.rotation == 0) {_flowDirection = 270}
                 if (_flow.direction == 180 && this.rotation == 90) {_flowDirection = 90}
                 // Input flow going up
@@ -84,81 +84,67 @@ game.sprites.component.updateSystem = function () {
     }
     // MIXER
     if (this.type == 'mixer') {
-        // If has no input
-        if (this.inputFlows.length < 1) {
-            this.outputFlows = []
-        }
-        //////////////////////////////////////////
-        // If has 1 input, this is a spliter
-        //////////////////////////////////////////
-        if (this.inputFlows.length == 1) {
-            // Calculate the flow direction of the 2 output flows
-            let _flow = this.inputFlows[0]
-            let _flow1Direction = 'x'
-            let _flow2Direction = 'x'
-            // Input flow going left
-            if (_flow.direction == 0 && this.rotation == 90) {_flow1Direction = 0;_flow2Direction = 90}
-            if (_flow.direction == 0 && this.rotation == 180) {_flow1Direction = 90;_flow2Direction = 270}
-            if (_flow.direction == 0 && this.rotation == 270) {_flow1Direction = 0;_flow2Direction = 270}
-            // Input flow going down
-            if (_flow.direction == 90 && this.rotation == 0) {_flow1Direction = 0;_flow2Direction = 90}
-            if (_flow.direction == 90 && this.rotation == 180) {_flow1Direction = 90;_flow2Direction = 180}
-            if (_flow.direction == 90 && this.rotation == 270) {_flow1Direction = 0;_flow2Direction = 180}
-            // Input flow going right
-            if (_flow.direction == 180 && this.rotation == 0) {_flow1Direction = 90;_flow2Direction = 270}
-            if (_flow.direction == 180 && this.rotation == 90) {_flow1Direction = 90;_flow2Direction = 180}
-            if (_flow.direction == 180 && this.rotation == 270) {_flow1Direction = 180;_flow2Direction = 270}
-            // Input flow going up
-            if (_flow.direction == 270 && this.rotation == 0) {_flow1Direction = 0;_flow2Direction = 270}
-            if (_flow.direction == 270 && this.rotation == 90) {_flow1Direction = 0;_flow2Direction = 180}
-            if (_flow.direction == 270 && this.rotation == 180) {_flow1Direction = 180;_flow2Direction = 270}
-            // Add the flows if have a valid direction
-            if (_flow1Direction != 'x') {
-                this.outputFlows.push({startCell:this.cell,color:_flow.color,direction:_flow1Direction})
-            }
-            if (_flow2Direction != 'x') {
-                this.outputFlows.push({startCell:this.cell,color:_flow.color,direction:_flow2Direction})
-            }
-        }
-        
-
-
-        //////////////////////////////////////////
-        // If has more than 1 input, this is a mixer
-        //////////////////////////////////////////
-        if (this.inputFlows.length > 1) {
-            this.outputFlows = []
-        }
-        
-        
-        /*
-        else {
-            // Calculate output flow for each input
-            this.inputFlows.forEach((_flow) => {
-                let _flowDirection = 'x'
-                // Input flow going left
-                if (_flow.direction == 0 && this.rotation == 180) {_flowDirection = 90}
-                if (_flow.direction == 0 && this.rotation == 270) {_flowDirection = 270}
-                // Input flow going down
-                if (_flow.direction == 90 && this.rotation == 0) {_flowDirection = 0}
-                if (_flow.direction == 90 && this.rotation == 270) {_flowDirection = 180}
-                // Input flow going right
-                if (_flow.direction == 180 && this.rotation == 0) {_flowDirection = 270}
-                if (_flow.direction == 180 && this.rotation == 90) {_flowDirection = 90}
-                // Input flow going up
-                if (_flow.direction == 270 && this.rotation == 90) {_flowDirection = 0}
-                if (_flow.direction == 270 && this.rotation == 180) {_flowDirection = 180}
-                // Add the flow if has a valid direction
-                if (_flowDirection != 'x') {
-                    this.outputFlows.push({startCell:this.cell,color:_flow.color,direction:_flowDirection})
-                }
-            })
-        }*/
-    } 
+        // Initialise the information of each point of the component
+        let _inputColor1 = 'x'
+        let _inputColor2 = 'x'
+        let _inputColor3 = 'x'
+        let _outputColor1 = 'x'
+        let _outputColor2 = 'x'
+        let _outputColor3 = 'x'
+        let _outputDirecton1 = 'x'
+        let _outputDirecton2 = 'x'
+        let _outputDirecton3 = 'x'
+        ////////////////////////////
+        // Calculate the real input colors
+        ////////////////////////////
+        this.inputFlows.forEach((_flow) => {
+            // Input flow going to right
+            if (_flow.direction == 0 && this.rotation == 90) {_inputColor3 = _flow.color}
+            if (_flow.direction == 0 && this.rotation == 180) {_inputColor2 = _flow.color}
+            if (_flow.direction == 0 && this.rotation == 270) {_inputColor1 = _flow.color}
+            // Input flow going to down
+            if (_flow.direction == 90 && this.rotation == 0) {_inputColor1 = _flow.color}
+            if (_flow.direction == 90 && this.rotation == 180) {_inputColor3 = _flow.color}
+            if (_flow.direction == 90 && this.rotation == 270) {_inputColor2 = _flow.color}
+            // Input flow going to left
+            if (_flow.direction == 180 && this.rotation == 0) {_inputColor2 = _flow.color}
+            if (_flow.direction == 180 && this.rotation == 90) {_inputColor1 = _flow.color}
+            if (_flow.direction == 180 && this.rotation == 270) {_inputColor3 = _flow.color}
+            // Input flow going to upd
+            if (_flow.direction == 270 && this.rotation == 0) {_inputColor3 = _flow.color}
+            if (_flow.direction == 270 && this.rotation == 90) {_inputColor2 = _flow.color}
+            if (_flow.direction == 270 && this.rotation == 180) {_inputColor1 = _flow.color}
+        })
+        ////////////////////////////
+        // Calculate the real output colors
+        ////////////////////////////
+        // Only 1 input
+        if (_inputColor1 != 'x' && _inputColor2 == 'x' && _inputColor3 == 'x') {_outputColor2 = _inputColor1;_outputColor3 = _inputColor1 }
+        if (_inputColor1 == 'x' && _inputColor2 != 'x' && _inputColor3 == 'x') {_outputColor1 = _inputColor2;_outputColor3 = _inputColor2 }
+        if (_inputColor1 == 'x' && _inputColor2 == 'x' && _inputColor3 != 'x') {_outputColor1 = _inputColor3;_outputColor2 = _inputColor3 }
+        // 2 inputs
+        if (_inputColor1 != 'x' && _inputColor2 != 'x' && _inputColor3 == 'x') {_outputColor3 = game.CONST.mixColors.get(_inputColor1 + _inputColor2) }
+        if (_inputColor1 != 'x' && _inputColor2 == 'x' && _inputColor3 != 'x') {_outputColor2 = game.CONST.mixColors.get(_inputColor1 + _inputColor3) }
+        if (_inputColor1 == 'x' && _inputColor2 != 'x' && _inputColor3 != 'x') {_outputColor1 = game.CONST.mixColors.get(_inputColor2 + _inputColor3) }
+        ////////////////////////////
+        // Calculate the output directions
+        ////////////////////////////
+        if (this.rotation == 0) {_outputDirecton1 = 270;_outputDirecton2 = 0;_outputDirecton3 = 90}
+        if (this.rotation == 90) {_outputDirecton1 = 0;_outputDirecton2 = 90;_outputDirecton3 = 180}
+        if (this.rotation == 180) {_outputDirecton1 = 90;_outputDirecton2 = 180;_outputDirecton3 = 270}
+        if (this.rotation == 270) {_outputDirecton1 = 180;_outputDirecton2 = 270;_outputDirecton3 = 0}
+        ////////////////////////////
+        // Feed the outputFlows table
+        ////////////////////////////
+        // By default no output
+        this.outputFlows = []
+        if (_outputColor1 != 'x') {this.outputFlows.push({startCell:this.cell,color:_outputColor1,direction:_outputDirecton1})}
+        if (_outputColor2 != 'x') {this.outputFlows.push({startCell:this.cell,color:_outputColor2,direction:_outputDirecton2})}
+        if (_outputColor3 != 'x') {this.outputFlows.push({startCell:this.cell,color:_outputColor3,direction:_outputDirecton3})}
+    }
     // Return the outputs
     return this.outputFlows
 }
-
 
 game.sprites.component.drawFunction = function (ctx) {
     ctx.save()
@@ -213,5 +199,4 @@ game.sprites.component.drawFunction = function (ctx) {
         ctx.strokeRect(25,25,15,15)
     }
     ctx.restore()
-
 }
