@@ -49,7 +49,7 @@ game.scenes.main.update = function() {
                 }
         }
         ///////////////////////////
-        // GameState: partCompleted
+        // GameState: levelCompleted
         ///////////////////////////
         if (game.variables.gameState == 'levelCompleted') {
                 // Load next level
@@ -72,7 +72,7 @@ game.scenes.main.draw = function() {
         // TO REMOVE - GRID DEBUG
         ///////////////////////////////////
         //let ctx = mge.game.context 
- /*       let ctx = mge._canvas._renderContext
+        let ctx = mge._canvas._renderContext
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 1
         let gridCellSize = game.CONST.gridCellSize
@@ -84,7 +84,7 @@ game.scenes.main.draw = function() {
                         ctx.font = '12px serif'
                         ctx.fillText (col+','+line,col*gridCellSize+8,line*gridCellSize+12)
                 }
-        }*/
+        }
         ///////////////////////////////////
         ///////////////////////////////////
 

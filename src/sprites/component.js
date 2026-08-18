@@ -44,6 +44,7 @@ game.sprites.component.updateSystem = function () {
     // SOURCE
     if (this.type == 'source') {
         this.outputFlows = [{startCell:this.cell,color:this.color,direction:this.rotation}]
+        if(game.variables.colorIsReached[this.color]) {this.cloneDelete()}
     }
     // TARGET
     if (this.type == 'target') {
@@ -54,6 +55,7 @@ game.sprites.component.updateSystem = function () {
             if(_flow.color == this.color) {
                 this.isReached = true
                 game.variables.colorIsReached[this.color] = true
+                this.cloneDelete()
             }
         })
     }
@@ -159,15 +161,15 @@ game.sprites.component.drawFunction = function (ctx) {
     if (this.type == 'target') {
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 2
-        if (this.isReached) {
+        /*if (this.isReached) {
             ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
             ctx.fillRect(15,15,10,10)
             ctx.strokeRect(15,15,10,10)
-        } else {
+        } else {*/
             ctx.fillStyle = game.tools.hsla(this.hColor,30,50,100)
             ctx.fillRect(0,0,this.width,this.height)
             ctx.strokeRect(0,0,this.width,this.height)
-        }
+        //}
     }
     // SOURCE
     if (this.type == 'source') {
