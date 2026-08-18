@@ -36,7 +36,7 @@ game.sprites.component.update = function () {
         this.rotation += 90
         if (this.rotation >= 360) {this.rotation = 0}
         // Ask to update system
-        game.variables.needToUpdateSystem = true
+        game.system.curStep = 0
     }
 }
 

@@ -315,9 +315,9 @@ mge._sprite = {
     cloneCreate : function() {
         return this._cloneCreate()
     },
-    //cloneDelete : function() {
-    //    this._cloneDelete()
-    //},
+    cloneDelete : function() {
+        this._cloneDelete()
+    },
     cloneDeleteAll : function() {
         this._cloneDeleteAll()
     },

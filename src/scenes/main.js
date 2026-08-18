@@ -14,19 +14,19 @@ game.scenes.main.start = function() {
 // Update scene
 //////////////////////
 game.scenes.main.update = function() {
-        // Check if the user has clicked on an object
+        // Take into account clicks on components
         game.sprites.component.cloneExecuteForEach('update')
-        // If yes, update the system and check if part or level is completed
-        if (game.variables.needToUpdateSystem) {
-                game.system.update()
-                // if level completed, load the next one
-                if (game.checkLevelCompleted()) {
-                        game.loadLevelPart(game.variables.curLevel+1,0)
-                } else {
-                        // if part of the level completes, load the next one
-                        if (game.checkPartCompleted()) {game.loadLevelPart(game.variables.curLevel,game.variables.curLevelPart+1) }
-                }
+        // Update the system
+        game.system.update()
+        // Check level
+        if (game.checkLevelCompleted()) {
+                game.loadLevelPart(game.variables.curLevel+1,0)
+        } else {
+                // if part of the level completes, load the next one
+                if (game.checkPartCompleted()) {game.loadLevelPart(game.variables.curLevel,game.variables.curLevelPart+1) }
         }
+        // Update rays
+        game.sprites.ray.cloneExecuteForEach('update')
 }
 
 //////////////////////

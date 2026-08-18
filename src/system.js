@@ -1,19 +1,27 @@
+game.system.timerDuration = 100
+game.system.stepTimer = mge.game.createTimer(game.system.timerDuration ,'X')
+game.system.curStep = 0
+
 game.system.update = function () {
-    // Initialization
     game.system.init()
-    // Update components (max 20 calls)
+    // Iterate to curStep
     let i = 0
-    while (i<20 && game.system.componentsToUpdate.length > 0) {
+    while (i < game.system.curStep) {
         game.system.updateComponents()
         i+=1
+    }        
+    // Update stepTimer 
+    game.system.stepTimer.update()
+    // If timer ended, update curStep and restart timer
+    if (game.system.stepTimer.progress == 1) {
+        if (game.system.componentsToUpdate.length > 0) {game.system.curStep +=1}
+        // Update timer
+        game.system.stepTimer._duration = game.system.timerDuration * (1 - Math.min(0.95, 0.3 * game.system.curStep))
+        game.system.stepTimer.start()
     }
-    // Put needToUpdateSystem to false 
-    game.variables.needToUpdateSystem = false
 }
 
 game.system.init = function () {
-    // Delete rays
-    game.sprites.ray.cloneDeleteAll()
     // Delete list of components to update
     game.system.componentsToUpdate = []
     // Delete input and output of each component 
@@ -65,7 +73,6 @@ game.system.updateComponents = function () {
     // Erase the game.system.componentsToUpdate with the new list
     ////////////////////////////////////////
     game.system.componentsToUpdate = _newComponentsToUpdate
-
 }
 
 game.system.getEndCell = function (_flow) {

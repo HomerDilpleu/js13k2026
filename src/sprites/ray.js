@@ -22,17 +22,40 @@ game.sprites.ray.initClone = function (_startCell,_endCell,_color) {
     let _end = game.tools.gridToCoordinate(_endCell[0],_endCell[1])
     clone.endX = _end.x
     clone.endY = _end.y
+    // Timer for life duration
+    clone.lifeTimer = mge.game.createTimer(600,'X')
+}
+
+game.sprites.ray.update = function () {
+    // Update life timer
+    this.lifeTimer.update()
+    // If timer finished, delete the clone
+    if (this.lifeTimer.progress == 1){this.cloneDelete()}
 }
 
 game.sprites.ray.drawFunction = function (ctx) {
     ctx.save()
     // Display
-    ctx.lineWidth = 4
-    ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,100)
+    //let alpha = 0
+    if (this.lifeTimer.progress < 0.5) {
+        alpha = this.lifeTimer.progress*100
+    } else {
+        alpha = 10*(1-this.lifeTimer.progress)
+    }
+    ctx.lineWidth = 8
+    ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,alpha)
     // Path
     ctx.beginPath()
     ctx.moveTo(this.startX, this.startY)
     ctx.lineTo(this.endX, this.endY)
     ctx.stroke()
+    //
+    ctx.lineWidth = 2
+    ctx.strokeStyle = game.tools.hsla(this.hColor,100,95,alpha)
+    ctx.beginPath()
+    ctx.moveTo(this.startX, this.startY)
+    ctx.lineTo(this.endX, this.endY)
+    ctx.stroke()
+    //
     ctx.restore()
 }

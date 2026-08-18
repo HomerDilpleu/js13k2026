@@ -35,7 +35,6 @@ game = {
   }, 
   variables:{
     grid:[],
-    needToUpdateSystem: false,
     colorIsReached:{
       red:false,
       oran:false,
