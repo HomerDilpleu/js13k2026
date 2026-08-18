@@ -34,6 +34,7 @@ game = {
                       ['yellyell', 'yell']])
   }, 
   variables:{
+    gameState:'boot',
     grid:[],
     colorIsReached:{
       red:false,
@@ -46,6 +47,9 @@ game = {
     },
     curLevel:'',
     curLevelPart:''
+  },
+  timers:{
+    partCompleted:mge.game.createTimer(500 ,'X')
   },
   instruments:{},
   system:{},
