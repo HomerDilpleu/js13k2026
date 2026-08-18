@@ -43,10 +43,15 @@ game.checkLevelCompleted = function () {
 // LEVELS
 ///////////////////////////////////
 game.levels.push([[['target',16,1,'red',0],['source',13,1,'red',90]],
-                  [['target',16,2,'oran',0],['source',20,5,'oran',270],['mirror',20,2,'x',90],['mirror',24,2,'x',90],['mixer',24,6,'x',90],['mirror',27,6,'x',90],['mixer',27,10,'x',90]],
-                  [['target',16,3,'yell',0],['source',13,7,'yell',0],['mirror',13,3,'x',0]],
-                  [['target',16,4,'gree',0],['source',12,6,'gree',0],['mirror',12,4,'x',0]],
-                  [['target',16,5,'cyan',0],['source',18,5,'cyan',0],['target',16,6,'blue',0],['source',18,6,'blue',0],['target',16,7,'mage',0],['source',18,7,'mage',0]]],
+                  [['target',16,2,'oran',0],['source',13,5,'oran',270],['mirror',13,2,'x',0]],
+                  [['target',16,3,'yell',0],['source',13,7,'yell',0],['mirror',13,3,'x',0],
+                   ['target',16,4,'gree',0],['source',12,6,'gree',0],['mirror',12,4,'x',0]],
+                  [['target',16,5,'cyan',0],['source',8,6,'cyan',90],
+                   ['target',16,6,'blue',0],['source',12,6,'blue',90],
+                   ['mirror',10,3,'x',0],['mirror',10,6,'x',90],['mirror',10,9,'x',90],['mirror',16,3,'x',90],
+                   ['mirror',14,9,'x',0],['mirror',14,6,'x',90],
+                   ['target',16,7,'mage',0],['source',19,3,'mage',0],
+                   ['mirror',16,1,'x',0],['mirror',21,1,'x',90],['mirror',21,7,'x',90]]]
 )
 
 game.levels.push([[['target',22,11,'blue',0],['mirror',22,6,'x',0],['source',19,6,'blue',0]],

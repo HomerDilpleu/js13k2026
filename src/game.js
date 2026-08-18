@@ -15,7 +15,7 @@ game = {
     gridCellSize:40,
     gridNbCols:32,
     gridNbLines:18,
-    rayMaxLength:5,
+    rayMaxLength:6,
     hColors: new Map([['red', 0],
                       ['oran', 30],
                       ['yell', 60],

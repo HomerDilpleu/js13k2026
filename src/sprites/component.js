@@ -79,7 +79,7 @@ game.sprites.component.updateSystem = function () {
                 if (_flow.direction == 270 && this.rotation == 90) {_flowDirection = 0}
                 if (_flow.direction == 270 && this.rotation == 180) {_flowDirection = 180}
                 // Add the flow if has a valid direction
-                if (_flowDirection != 'x') {
+                if (_flowDirection != 'x' && this.outputFlows.length == 0) {
                     this.outputFlows.push({startCell:this.cell,color:_flow.color,direction:_flowDirection})
                 }
             })

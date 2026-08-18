@@ -61,22 +61,6 @@ game.scenes.main.update = function() {
         ///////////////////////////
         // Update rays
         game.sprites.ray.cloneExecuteForEach('update')
-
-/*
-        // Take into account clicks on components
-        game.sprites.component.cloneExecuteForEach('update')
-        // Update the system
-        game.system.update()
-        // Check level
-        if (game.checkLevelCompleted()) {
-                game.loadLevelPart(game.variables.curLevel+1,0)
-        } else {
-                // if part of the level completes, load the next one
-                if (game.checkPartCompleted()) {game.loadLevelPart(game.variables.curLevel,game.variables.curLevelPart+1) }
-        }
-        // Update rays
-        game.sprites.ray.cloneExecuteForEach('update')
-*/
 }
 
 //////////////////////
@@ -88,7 +72,7 @@ game.scenes.main.draw = function() {
         // TO REMOVE - GRID DEBUG
         ///////////////////////////////////
         //let ctx = mge.game.context 
-        let ctx = mge._canvas._renderContext
+ /*       let ctx = mge._canvas._renderContext
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 1
         let gridCellSize = game.CONST.gridCellSize
@@ -100,12 +84,12 @@ game.scenes.main.draw = function() {
                         ctx.font = '12px serif'
                         ctx.fillText (col+','+line,col*gridCellSize+8,line*gridCellSize+12)
                 }
-        }
+        }*/
         ///////////////////////////////////
         ///////////////////////////////////
 
+        game.sprites.rainbow.draw()
         game.sprites.ray.cloneExecuteForEach('draw')
         game.sprites.component.cloneExecuteForEach('draw')
-        game.sprites.rainbow.draw()
 
 }

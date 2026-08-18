@@ -66,7 +66,9 @@ game.system.updateComponents = function () {
                 _newComponentsToUpdate.push(game.variables.grid[_endCellCol][_endCellLine])
             }
             // 4. Create the ray
-            game.sprites.ray.initClone(_startCell,_endCell,_color)
+            if (game.sprites.ray._clonesList.length <= 300) {
+                game.sprites.ray.initClone(_startCell,_endCell,_color)
+            }
        }
     )
     ////////////////////////////////////////
@@ -83,7 +85,7 @@ game.system.getEndCell = function (_flow) {
     let _curLine = _flow.startCell[1]
     let _direction = _flow.direction
     // Iterations to find end Cell
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < _maxCells; i++) {
         let _prevCol = _curCol
         let _prevLine = _curLine
         // Move to next Cell
