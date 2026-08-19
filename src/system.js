@@ -4,16 +4,17 @@ game.system.curStep = 0
 
 game.system.update = function () {
     game.system.init()
-    // Iterate to curStep
-    let i = 0
-    while (i < game.system.curStep) {
-        game.system.updateComponents()
-        i+=1
-    }        
     // Update stepTimer 
     game.system.stepTimer.update()
-    // If timer ended, update curStep and restart timer
+    // If timer ended, update the system
     if (game.system.stepTimer.progress == 1) {
+        // Iterate to curStep
+        let i = 0
+        while (i < game.system.curStep) {
+            game.system.updateComponents()
+            i+=1
+        }
+        // Check if there is a next step to get
         if (game.system.componentsToUpdate.length > 0) {game.system.curStep +=1}
         // Update timer
         game.system.stepTimer._duration = game.system.timerDuration * (1 - Math.min(0.95, 0.3 * game.system.curStep))
@@ -65,7 +66,7 @@ game.system.updateComponents = function () {
             if (game.variables.grid[_endCellCol][_endCellLine] != '' && game.variables.grid[_endCellCol][_endCellLine].type != 'source') {
                 _newComponentsToUpdate.push(game.variables.grid[_endCellCol][_endCellLine])
             }
-            // 4. Create the ray
+            // 4. Create the ray (if not too many rays)
             if (game.sprites.ray._clonesList.length <= 300) {
                 game.sprites.ray.initClone(_startCell,_endCell,_color)
             }
