@@ -31,11 +31,9 @@ game.checkPartCompleted = function () {
 
 game.checkLevelCompleted = function () {
     let _completed = false
-    if (game.variables.colorIsReached.red && game.variables.colorIsReached.oran &&
-        game.variables.colorIsReached.yell && game.variables.colorIsReached.gree &&
-        game.variables.colorIsReached.cyan && game.variables.colorIsReached.blue &&
-        game.variables.colorIsReached.mage
-    ){_completed = true} 
+    if (game.variables.colorIsReached.red && game.variables.colorIsReached.oran && game.variables.colorIsReached.yell && game.variables.colorIsReached.gree && game.variables.colorIsReached.cyan && game.variables.colorIsReached.blue && game.variables.colorIsReached.mage){
+        _completed = true
+    } 
     return _completed
 }
 

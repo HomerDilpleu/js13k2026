@@ -10,6 +10,7 @@ inputFiles = ['../src/lib/mge_V1.5.0.js',\
               '../src/sprites/playButton.js',\
               '../src/sprites/ray.js',\
               '../src/sprites/component.js',\
+              '../src/sprites/rainbow.js',\
               '../src/system.js'\
               ]
 
@@ -199,7 +200,7 @@ stringsToUglify+=['cloneExecuteForEach','listCollisionsWithClones']
 # game.js
 stringsToUglify+=['game','scenes','boot','main','images','animations','sprites','variables','instruments','songs','tools']
 stringsToUglify+=['gridCellSize','gridNbCols','gridNbLines','rayMaxLength','hColors','mixColors','gridToCoordinate']
-stringsToUglify+=['needToUpdateSystem']
+stringsToUglify+=['colorIsReached','gameState']
 stringsToUglify+=['gridToCoordinate']
 stringsToUglify+=['curLevelNbParts','curLevelPart','curLevel']
 
@@ -214,11 +215,11 @@ stringsToUglify+=['loadLevelPart','loadLevel','_levelID','_levelPart','_partComp
 # TO DO 
 
 # scenes / main.js
-# TO DO 
+stringsToUglify+=['running','partCompleted','levelCompleted']
 
 # sprites / component.js
 stringsToUglify+=['component','isReached','_coord','hColor','cell','inputFlows','outputFlows']
-stringsToUglify+=['source','target','mirror','mixer']
+stringsToUglify+=['source','target','mirror','mixer','_prevCol','_prevLine']
 stringsToUglify+=['_flowDirection','_flow','direction','_inputColor1','_inputColor2','_inputColor3']
 stringsToUglify+=['_outputColor1','_outputColor2','_outputColor3','_outputDirecton1','_outputDirecton2','_outputDirecton3']
 
@@ -228,10 +229,14 @@ stringsToUglify+=['_startCell','_endCell','startCell','endCell','startX','startY
 # sprites / playButton.js
 stringsToUglify+=['playButton']
 
+# sprites / rainbow.js
+stringsToUglify+=['rainbow']
+
+
 # system.js
 stringsToUglify+=['componentsToUpdate','_component','updateComponents','_outputFlowList','_newComponentsToUpdate']
 stringsToUglify+=['_startCell','_color','_endCellCol','_endCellLine','_endCell','getEndCell','_maxCells','_curCol']
-stringsToUglify+=['_curLine','_direction']
+stringsToUglify+=['_curLine','_direction','timerDuration','system','curStep']
 
 
 #########################################
