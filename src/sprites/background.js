@@ -4,9 +4,29 @@ game.sprites.background.init = function() {
     this.x = mge.game.width / 2
     this.y = mge.game.height / 2
     this.isVisible = true
-
+    // Tree
     this.bottomTree1a = [[50,200],[61,177],[77,166],[91,200]]
     this.bottomTree1b = [[61,177],[62,134],[50,114],[81,113],[77,166]]
+    this.upTree1 = [[50,114],[30,85],[62,97],[93,60],[81,113]]
+    this.leavesTree1a = [[52,118],[28,115],[5,67],[35,38],[63,69]]
+    this.leavesTree1b = [[35,38],[63,69],[52,118],[107,110],[115,71],[101,42],[74,31]]
+    // Bkg
+    this.bkg1 = [[0,0],[0,357],[325,255],[279,0]]
+    this.bkg2 = [[0,357],[324,255],[280,0],[594,101],[631,430],[320,478]]
+    this.bkg3 = [[279,0],[594,102],[631,429],[876,190],[764,0]]
+    this.bkg4 = [[764,0],[1200,0],[1200,497],[630,430],[875,189]]
+    this.bkg5 = [[0,356],[320,478],[632,430],[464,612],[495,720],[0,720]]
+    this.bkg6 = [[631,430],[463,612],[495,720],[1200,720],[1200,497]]
+    
+/*
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <path d="M0 0L-1 357L325 255L279 0Z" fill="transparent" stroke="#ffffff" stroke-width="1.5" />
+  <path d="M0 356L324 255L280 0L594 101L631 430L320 478Z" fill="transparent" stroke="#ffffff" stroke-width="1.5" />
+  <path d="M279 0L594 102L631 429L876 190L764 0Z" fill="transparent" stroke="#ffffff" stroke-width="1.5" />
+  <path d="M764 0L1200 0L1200 497L630 430L875 189Z" fill="transparent" stroke="#ffffff" stroke-width="1.5" />
+  <path d="M0 356L320 478L632 430L464 612L495 720L1 720Z" fill="transparent" stroke="#ffffff" stroke-width="1.5" />
+  <path d="M631 430L463 612L495 720L1200 720L1200 497Z" fill="transparent" stroke="#ffffff" stroke-width="1.5" />
+</svg>*/
 
 }
 
@@ -37,9 +57,11 @@ game.sprites.background.drawPiece = function (ctx, _path, _color, _lineWidth) {
     ctx.stroke(_path)
 }
 
-game.sprites.background.drawShape = function (ctx, _piecesList, _color, _lineWidth) {
+game.sprites.background.drawShape = function (ctx, _piecesList, h, s, l , _lineWidth) {
+    i = 0
     _piecesList.forEach((_piece) => {
-        this.drawPiece(ctx, _piece, _color, _lineWidth)
+        this.drawPiece(ctx, _piece, game.tools.hsla(h,s+i,l+i,100), _lineWidth)
+        i+=5
        } 
     )
 }
@@ -49,14 +71,45 @@ game.sprites.background.drawTree = function (ctx, x, y, _xScale, _yScale) {
     ctx.save()
     ctx.translate(x,y)
     ctx.scale(_xScale,_yScale)
-    this.drawShape(ctx, this.createStainedGlass(this.bottomTree1a,70,180), 'hsl(30,30%,40%)', _lineWidth / Math.abs(_xScale))
-    this.drawShape(ctx, this.createStainedGlass(this.bottomTree1b,70,130), 'hsl(30,30%,40%)', _lineWidth / Math.abs(_xScale))
+    // Leaves
+    let h = 115
+    let s = 50
+    let l = 50
+    this.drawShape(ctx, this.createStainedGlass(this.leavesTree1a,30,85), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.leavesTree1b,93,60), h, s, l, _lineWidth / Math.abs(_xScale))
+    // Branches
+    h = 30
+    s = 30
+    l = 60
+    this.drawShape(ctx, this.createStainedGlass(this.bottomTree1a,70,180), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.bottomTree1b,70,130), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.upTree1,65,105), h, s, l, _lineWidth / Math.abs(_xScale))
     ctx.restore()
 }
 
+game.sprites.background.drawSky = function (ctx, x, y, _xScale, _yScale) {
+    let _lineWidth = 5
+    ctx.save()
+    ctx.translate(x,y)
+    ctx.scale(_xScale,_yScale)
+    // Leaves
+    let h = 200
+    let s = 65
+    let l = 70
+    this.drawShape(ctx, this.createStainedGlass(this.bkg1,150,150), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.bkg2,450,300), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.bkg3,730,150), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.bkg4,1050,220), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.bkg5,240,580), h, s, l, _lineWidth / Math.abs(_xScale))
+    this.drawShape(ctx, this.createStainedGlass(this.bkg6,900,600), h, s, l, _lineWidth / Math.abs(_xScale))
+    ctx.restore()
+}
+
+
 game.sprites.background.drawFunction = function (ctx) {
+    this.drawSky(ctx,0,0,1,1)
     this.drawTree(ctx,0,0,3,3)
-    this.drawTree(ctx,600,100,-2,2)
+    this.drawTree(ctx,1200,0,-3,3)
 }
 
 
@@ -68,7 +121,9 @@ TREE 1
 TREE 2
 {"format":"mge-pathdrawer-project","version":2,"width":800,"height":600,"frames":[{"paths":[{"points":[{"type":"M","x":286,"y":599},{"type":"L","x":306,"y":571},{"type":"L","x":321,"y":389},{"type":"L","x":353,"y":388},{"type":"L","x":366,"y":449},{"type":"L","x":382,"y":454},{"type":"L","x":407,"y":380},{"type":"L","x":391,"y":444},{"type":"L","x":423,"y":385},{"type":"L","x":397,"y":456},{"type":"L","x":391,"y":568},{"type":"L","x":420,"y":599}],"fill":"#b5835a","stroke":"#ffffff","strokeWidth":1},{"points":[{"type":"M","x":318,"y":413},{"type":"L","x":273,"y":372},{"type":"L","x":273,"y":297},{"type":"L","x":301,"y":253},{"type":"L","x":294,"y":176},{"type":"L","x":322,"y":84},{"type":"L","x":373,"y":59},{"type":"L","x":429,"y":73},{"type":"L","x":446,"y":160},{"type":"L","x":468,"y":258},{"type":"L","x":443,"y":312},{"type":"L","x":441,"y":403},{"type":"L","x":369,"y":382},{"type":"L","x":356,"y":398}],"fill":"#8ff0a4","stroke":"#ffffff","strokeWidth":1},{"points":[{"type":"M","x":315,"y":414},{"type":"L","x":274,"y":371},{"type":"L","x":271,"y":296},{"type":"L","x":302,"y":253},{"type":"L","x":291,"y":176},{"type":"L","x":321,"y":83},{"type":"L","x":371,"y":58},{"type":"L","x":431,"y":73},{"type":"L","x":470,"y":259},{"type":"L","x":446,"y":310},{"type":"L","x":441,"y":404},{"type":"L","x":370,"y":383},{"type":"L","x":323,"y":400},{"type":"L","x":366,"y":362},{"type":"L","x":420,"y":367},{"type":"L","x":424,"y":305},{"type":"L","x":448,"y":252},{"type":"L","x":409,"y":90},{"type":"L","x":368,"y":84},{"type":"L","x":339,"y":98},{"type":"L","x":316,"y":177},{"type":"L","x":321,"y":253},{"type":"L","x":293,"y":303},{"type":"L","x":288,"y":364},{"type":"L","x":321,"y":399}],"fill":"#26a269","stroke":"#ffffff","strokeWidth":0.5}]}]}
 
-VITRAIL ARBRE BAS 1 
-{"format":"mge-pathdrawer-project","version":2,"width":150,"height":200,"frames":[{"paths":[{"points":[{"type":"M","x":50,"y":200},{"type":"L","x":61,"y":177},{"type":"L","x":62,"y":134},{"type":"L","x":50,"y":114},{"type":"L","x":81,"y":113},{"type":"L","x":77,"y":166},{"type":"L","x":91,"y":200}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":50,"y":200},{"type":"L","x":61,"y":177},{"type":"L","x":73,"y":196},{"type":"Z"}],"fill":"transparent","stroke":"#ed333b","strokeWidth":0.5},{"points":[{"type":"M","x":61,"y":177},{"type":"L","x":73,"y":196},{"type":"L","x":83,"y":180},{"type":"Z"},{"type":"Z"}],"fill":"transparent","stroke":"#57e389","strokeWidth":0.5},{"points":[{"type":"M","x":73,"y":196},{"type":"L","x":83,"y":180},{"type":"L","x":91,"y":200},{"type":"Z"}],"fill":"transparent","stroke":"#c061cb","strokeWidth":0.5},{"points":[{"type":"M","x":61,"y":177},{"type":"L","x":62,"y":155},{"type":"L","x":77,"y":166},{"type":"L","x":83,"y":180},{"type":"Z"}],"fill":"transparent","stroke":"#ff7800","strokeWidth":0.5},{"points":[{"type":"M","x":77,"y":166},{"type":"L","x":79,"y":141},{"type":"L","x":62,"y":140},{"type":"L","x":62,"y":155},{"type":"Z"}],"fill":"transparent","stroke":"#e01b24","strokeWidth":0.5},{"points":[{"type":"M","x":62,"y":140},{"type":"L","x":62,"y":134},{"type":"L","x":81,"y":113},{"type":"L","x":79,"y":141},{"type":"Z"},{"type":"Z"}],"fill":"transparent","stroke":"#2ec27e","strokeWidth":0.5},{"points":[{"type":"M","x":62,"y":134},{"type":"L","x":50,"y":114},{"type":"L","x":81,"y":113},{"type":"Z"}],"fill":"transparent","stroke":"#9141ac","strokeWidth":0.5}]}]}
-*/
+VITRAIL ARBRE
+{"format":"mge-pathdrawer-project","version":2,"width":150,"height":200,"frames":[{"paths":[{"points":[{"type":"M","x":50,"y":200},{"type":"L","x":61,"y":177},{"type":"L","x":62,"y":134},{"type":"L","x":50,"y":114},{"type":"L","x":81,"y":113},{"type":"L","x":77,"y":166},{"type":"L","x":91,"y":200}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":50,"y":114},{"type":"L","x":30,"y":85},{"type":"L","x":62,"y":97},{"type":"L","x":93,"y":60},{"type":"L","x":81,"y":113},{"type":"Z"},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":52,"y":118},{"type":"L","x":28,"y":115},{"type":"L","x":5,"y":67},{"type":"L","x":35,"y":38},{"type":"L","x":63,"y":69},{"type":"Z"},{"type":"Z"},{"type":"Z"},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":35,"y":38},{"type":"L","x":63,"y":69},{"type":"L","x":52,"y":118},{"type":"L","x":107,"y":110},{"type":"L","x":115,"y":71},{"type":"L","x":101,"y":42},{"type":"L","x":74,"y":31},{"type":"Z"},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5}]}]}
+
+VITRAIL CIEL
+{"format":"mge-pathdrawer-project","version":2,"width":1200,"height":720,"frames":[{"paths":[{"points":[{"type":"M","x":0,"y":0},{"type":"L","x":-1,"y":357},{"type":"L","x":325,"y":255},{"type":"L","x":279,"y":0},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":0,"y":356},{"type":"L","x":324,"y":255},{"type":"L","x":280,"y":0},{"type":"L","x":594,"y":101},{"type":"L","x":631,"y":430},{"type":"L","x":320,"y":478},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":279,"y":0},{"type":"L","x":594,"y":102},{"type":"L","x":631,"y":429},{"type":"L","x":876,"y":190},{"type":"L","x":764,"y":0},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":764,"y":0},{"type":"L","x":1200,"y":0},{"type":"L","x":1200,"y":497},{"type":"L","x":630,"y":430},{"type":"L","x":875,"y":189},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":0,"y":356},{"type":"L","x":320,"y":478},{"type":"L","x":632,"y":430},{"type":"L","x":464,"y":612},{"type":"L","x":495,"y":720},{"type":"L","x":1,"y":720},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5},{"points":[{"type":"M","x":631,"y":430},{"type":"L","x":463,"y":612},{"type":"L","x":495,"y":720},{"type":"L","x":1200,"y":720},{"type":"L","x":1200,"y":497},{"type":"Z"}],"fill":"transparent","stroke":"#ffffff","strokeWidth":1.5}]}]}*/
 
