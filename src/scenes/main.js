@@ -67,7 +67,7 @@ game.scenes.main.update = function() {
 // Draw scene
 //////////////////////
 game.scenes.main.draw = function() {
-
+/*
         ///////////////////////////////////
         // TO REMOVE - GRID DEBUG
         ///////////////////////////////////
@@ -87,7 +87,8 @@ game.scenes.main.draw = function() {
         }
         ///////////////////////////////////
         ///////////////////////////////////
-
+*/
+        game.sprites.background.draw()
         game.sprites.rainbow.draw()
         game.sprites.ray.cloneExecuteForEach('draw')
         game.sprites.component.cloneExecuteForEach('draw')
