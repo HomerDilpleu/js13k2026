@@ -61,6 +61,14 @@ game.scenes.main.update = function() {
         ///////////////////////////
         // Update rays
         game.sprites.ray.cloneExecuteForEach('update')
+        // Update color timers
+        if (game.variables.colorIsReached.red) {game.timers.red.update()} else {game.timers.red.start()}
+        if (game.variables.colorIsReached.oran) {game.timers.oran.update()} else {game.timers.oran.start()}
+        if (game.variables.colorIsReached.yell) {game.timers.yell.update()} else {game.timers.yell.start()}
+        if (game.variables.colorIsReached.gree) {game.timers.gree.update()} else {game.timers.gree.start()}
+        if (game.variables.colorIsReached.cyan) {game.timers.cyan.update()} else {game.timers.cyan.start()}
+        if (game.variables.colorIsReached.blue) {game.timers.blue.update()} else {game.timers.blue.start()}
+        if (game.variables.colorIsReached.mage) {game.timers.mage.update()} else {game.timers.mage.start()}
 }
 
 //////////////////////
@@ -89,7 +97,6 @@ game.scenes.main.draw = function() {
         ///////////////////////////////////
 */
         game.sprites.background.draw()
-        game.sprites.rainbow.draw()
         game.sprites.ray.cloneExecuteForEach('draw')
         game.sprites.component.cloneExecuteForEach('draw')
 

@@ -7,7 +7,9 @@ game.loadLevelPart = function (_levelID,_levelPart) {
     game.variables.grid = Array.from({length: game.CONST.gridNbCols}, () => Array(game.CONST.gridNbLines).fill(''))
     game.variables.curLevel = _levelID
     game.variables.curLevelPart = _levelPart
-    if (_levelPart == 0) {game.variables.colorIsReached={red:false,oran:false,yell:false,gree:false,cyan:false,blue:false,mage:false}}
+    if (_levelPart == 0) {
+        game.variables.colorIsReached={red:false,oran:false,yell:false,gree:false,cyan:false,blue:false,mage:false}
+    }
     // Remove components and rays
     game.sprites.component.cloneDeleteAll()
     game.sprites.ray.cloneDeleteAll()
@@ -40,6 +42,11 @@ game.checkLevelCompleted = function () {
 ///////////////////////////////////
 // LEVELS
 ///////////////////////////////////
+game.levels.push([[['target',16,1,'gree',0],['source',10,1,'gree',180]],
+                  [['target',16,1,'oran',0],['source',10,1,'oran',180]],
+                  [['target',16,1,'cyan',0],['source',10,1,'cyan',180]],
+                  [['target',16,1,'red',0],['source',10,1,'red',180]]]
+)
 game.levels.push([[['target',16,1,'red',0],['source',10,1,'red',180]],
                   [['target',16,2,'oran',0],['source',22,2,'oran',0]],
                   [['target',16,3,'yell',0],['source',10,3,'yell',270],
@@ -72,9 +79,6 @@ game.levels.push([[['target',16,1,'red',0],['source',13,1,'red',90]],
                    ['mirror',16,1,'x',0],['mirror',21,1,'x',90],['mirror',21,7,'x',90]]]
 )
 
-game.levels.push([[['target',22,11,'blue',0],['mirror',22,6,'x',0],['source',19,6,'blue',0]],
-                  [['target',15,11,'mage',0],['source',13,7,'mage',0]]]
-)
 
 
 
