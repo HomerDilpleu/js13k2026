@@ -90,7 +90,7 @@ game.scenes.main.draw = function() {
 */
         game.sprites.background.draw()
         game.sprites.rainbow.draw()
-        //game.sprites.ray.cloneExecuteForEach('draw')
-        //game.sprites.component.cloneExecuteForEach('draw')
+        game.sprites.ray.cloneExecuteForEach('draw')
+        game.sprites.component.cloneExecuteForEach('draw')
 
 }
