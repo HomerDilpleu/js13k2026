@@ -21,6 +21,8 @@ game.sprites.component.initClone = function (_type,_col,_line,_color,_rotation) 
     // Get color (used only be target and source)
     clone.color = _color
     clone.hColor = game.CONST.hColors.get(_color)
+    // Scale
+    if (_type == 'target') {clone.scaleX=1.5;clone.scaleY=1.5}
     // Initialise flag is Reached (used only by target)
     clone.isReached = false
     // Get orientation (not used by target)
@@ -28,6 +30,8 @@ game.sprites.component.initClone = function (_type,_col,_line,_color,_rotation) 
     // Create input and output flows
     clone.inputFlows = []
     clone.outputFlows = []
+    // Timers
+    clone.sourceTimer = mge.game.createTimer(3000 ,'L')
 }
 
 game.sprites.component.update = function () {
@@ -38,6 +42,8 @@ game.sprites.component.update = function () {
         // Ask to update system
         game.system.curStep = 0
     }
+    // Increment timers
+    this.sourceTimer.update()
 }
 
 game.sprites.component.updateSystem = function () {
@@ -159,26 +165,39 @@ game.sprites.component.drawFunction = function (ctx) {
     ctx.translate(-20, -20)
     // TARGET
     if (this.type == 'target') {
-        ctx.strokeStyle = 'black'
-        ctx.lineWidth = 2
-        /*if (this.isReached) {
-            ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
-            ctx.fillRect(15,15,10,10)
-            ctx.strokeRect(15,15,10,10)
-        } else {*/
-            ctx.fillStyle = game.tools.hsla(this.hColor,30,50,100)
-            ctx.fillRect(0,0,this.width,this.height)
-            ctx.strokeRect(0,0,this.width,this.height)
-        //}
+        ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
+        ctx.fill(new Path2D("M20 0L5 10L5 30L20 40L35 31L35 10Z"))
+        ctx.fillStyle = game.tools.hsla(this.hColor,100,75,100)
+        ctx.fill(new Path2D("M20 0L20 10L14 14L5 10Z"))
+        ctx.fill(new Path2D("M26 26L35 31L20 40L20 30Z"))
+        ctx.fillStyle = game.tools.hsla(this.hColor,100,35,100)
+        ctx.fill(new Path2D("M20 0L35 10L26 14L20 10Z"))
+        ctx.fill(new Path2D("M20 30L20 40L5 30L14 26Z"))
+        ctx.fillStyle = game.tools.hsla(this.hColor,100,45,100)
+        ctx.fill(new Path2D("M35 10L35 31L26 26L26 14Z"))
+        ctx.fill(new Path2D("M5 10L14 14L14 26L5 30Z"))
     }
     // SOURCE
     if (this.type == 'source') {
-        ctx.strokeStyle = 'black'
+
+        ctx.beginPath()
+        ctx.arc(20, 20, 20, 0, 2 * Math.PI)
         ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
-        ctx.lineWidth = 2
-        ctx.fillRect(0,0,this.width,this.height)
-        ctx.strokeRect(0,0,this.width,this.height)
-        ctx.strokeRect(25,15,10,10)
+        ctx.fill()
+
+        let radius = 25 + Math.sin(this.sourceTimer.progress * Math.PI) * 8
+        let alpha = 60 - Math.sin(this.sourceTimer.progress * Math.PI) * 50
+
+        ctx.beginPath()
+        ctx.arc(20, 20, radius, 0, 2 * Math.PI)
+        ctx.fillStyle = game.tools.hsla(this.hColor,100,50,alpha)
+        ctx.fill()
+
+        ctx.beginPath()
+        ctx.arc(20, 20, 10, 0, 2 * Math.PI)
+        ctx.fillStyle = game.tools.hsla(this.hColor,100,35,100)
+        ctx.fill()
+
     }
     // MIRROR
     if (this.type == 'mirror') {
