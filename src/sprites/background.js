@@ -45,10 +45,10 @@ game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _
     if (_timerProgress == 0) {
         // grey
         ctx.fillStyle = game.tools.hsla(0,0,80,100)
-        ctx.strokeStyle = game.tools.hsla(0,0,40,100)
+        ctx.strokeStyle = game.tools.hsla(0,0,30,100)
     } else if ((_timerProgress <= 0.3)) {
         ctx.fillStyle = game.tools.hsla(0,0,Math.min(100,80 + 200*_timerProgress),100)
-        ctx.strokeStyle = game.tools.hsla(0,0,40,100)
+        ctx.strokeStyle = game.tools.hsla(0,0,80,100)
     } else if ((_timerProgress <= 1)) {
         ctx.fillStyle = game.tools.hsla(h,s*_timerProgress,l+(100-l)*(1-_timerProgress),100)
         ctx.strokeStyle = game.tools.hsla(0,0,0,100)

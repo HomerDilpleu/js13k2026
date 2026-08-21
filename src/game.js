@@ -50,7 +50,7 @@ game = {
     curLevelPart:''
   },
   timers:{
-    partCompleted:mge.game.createTimer(500 ,'X'),
+    partCompleted:mge.game.createTimer(1000 ,'X'),
     red:mge.game.createTimer(1000 ,'X'),
     oran:mge.game.createTimer(1000 ,'X'),
     yell:mge.game.createTimer(1000 ,'X'),
