@@ -43,21 +43,21 @@ game.sprites.ray.update = function () {
 game.sprites.ray.drawFunction = function (ctx) {
     ctx.save()
     //
-    ctx.lineWidth = 8
     ctx.lineCap = 'round'
+    ctx.lineWidth = 8
     ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,100)
     // Path
     ctx.beginPath()
     ctx.moveTo(this.startX, this.startY)
     ctx.lineTo(this.endX, this.endY)
     ctx.stroke()
-    //
-/*    ctx.lineWidth = 2
-    ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,100)
+    ctx.lineWidth = 20
+    ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,20)
+    // Path
     ctx.beginPath()
     ctx.moveTo(this.startX, this.startY)
     ctx.lineTo(this.endX, this.endY)
-*/    ctx.stroke()
+    ctx.stroke()
     //
     ctx.restore()
 }

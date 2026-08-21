@@ -41,6 +41,8 @@ game.sprites.component.update = function () {
         if (this.rotation >= 360) {this.rotation = 0}
         // Ask to update system
         game.system.curStep = 0
+        // Check if must be deletes
+        if(this.isReached && game.timers.partCompleted.progress==1){this.cloneDelete()}
     }
     // Increment timers
     this.sourceTimer.update()
@@ -61,7 +63,6 @@ game.sprites.component.updateSystem = function () {
             if(_flow.color == this.color) {
                 this.isReached = true
                 game.variables.colorIsReached[this.color] = true
-                this.cloneDelete()
             }
         })
     }
@@ -165,23 +166,28 @@ game.sprites.component.drawFunction = function (ctx) {
     ctx.translate(-20, -20)
     // TARGET
     if (this.type == 'target') {
-        ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
+        let s = 60
+        if(this.isReached) {s=100}
+        ctx.fillStyle = game.tools.hsla(this.hColor,s,50,100)
         ctx.fill(new Path2D("M20 0L5 10L5 30L20 40L35 31L35 10Z"))
-        ctx.fillStyle = game.tools.hsla(this.hColor,100,75,100)
+        ctx.fillStyle = game.tools.hsla(this.hColor,s,75,100)
         ctx.fill(new Path2D("M20 0L20 10L14 14L5 10Z"))
         ctx.fill(new Path2D("M26 26L35 31L20 40L20 30Z"))
-        ctx.fillStyle = game.tools.hsla(this.hColor,100,35,100)
+        ctx.fillStyle = game.tools.hsla(this.hColor,s,35,100)
         ctx.fill(new Path2D("M20 0L35 10L26 14L20 10Z"))
         ctx.fill(new Path2D("M20 30L20 40L5 30L14 26Z"))
-        ctx.fillStyle = game.tools.hsla(this.hColor,100,45,100)
+        ctx.fillStyle = game.tools.hsla(this.hColor,s,45,100)
         ctx.fill(new Path2D("M35 10L35 31L26 26L26 14Z"))
         ctx.fill(new Path2D("M5 10L14 14L14 26L5 30Z"))
     }
     // SOURCE
     if (this.type == 'source') {
 
+        let x = 20 + Math.sin(this.sourceTimer.progress * Math.PI * 2) * 2
+        let y = 20 + Math.sin(this.sourceTimer.progress * Math.PI) * 2
+
         ctx.beginPath()
-        ctx.arc(20, 20, 20, 0, 2 * Math.PI)
+        ctx.arc(x, y, 20, 0, 2 * Math.PI)
         ctx.fillStyle = game.tools.hsla(this.hColor,100,50,100)
         ctx.fill()
 
@@ -189,12 +195,12 @@ game.sprites.component.drawFunction = function (ctx) {
         let alpha = 60 - Math.sin(this.sourceTimer.progress * Math.PI) * 50
 
         ctx.beginPath()
-        ctx.arc(20, 20, radius, 0, 2 * Math.PI)
+        ctx.arc(x, y, radius, 0, 2 * Math.PI)
         ctx.fillStyle = game.tools.hsla(this.hColor,100,50,alpha)
         ctx.fill()
 
         ctx.beginPath()
-        ctx.arc(20, 20, 10, 0, 2 * Math.PI)
+        ctx.arc(x, y, 10, 0, 2 * Math.PI)
         ctx.fillStyle = game.tools.hsla(this.hColor,100,35,100)
         ctx.fill()
 

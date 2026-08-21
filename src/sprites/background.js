@@ -44,9 +44,9 @@ game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _
     // Calculate color depending of timer progress
     if (_timerProgress == 0) {
         // grey
-        ctx.fillStyle = game.tools.hsla(0,0,80,100)
-        ctx.strokeStyle = game.tools.hsla(0,0,30,100)
-    } else if ((_timerProgress <= 0.3)) {
+        ctx.fillStyle = game.tools.hsla(0,0,90,100)
+        ctx.strokeStyle = game.tools.hsla(0,0,50,100)
+    } else if ((_timerProgress <= 0.2)) {
         ctx.fillStyle = game.tools.hsla(0,0,Math.min(100,80 + 200*_timerProgress),100)
         ctx.strokeStyle = game.tools.hsla(0,0,80,100)
     } else if ((_timerProgress <= 1)) {
