@@ -22,40 +22,42 @@ game.sprites.ray.initClone = function (_startCell,_endCell,_color) {
     let _end = game.tools.gridToCoordinate(_endCell[0],_endCell[1])
     clone.endX = _end.x
     clone.endY = _end.y
-    // Timer for life duration
-    clone.lifeTimer = mge.game.createTimer(600,'X')
+    // Various
+    clone.isAlive = true
+    clone.deadTimer = mge.game.createTimer(200 ,'X')
 }
 
 game.sprites.ray.update = function () {
-    // Update life timer
-    this.lifeTimer.update()
-    // If timer finished, delete the clone
-    if (this.lifeTimer.progress == 1){this.cloneDelete()}
+    // If clone is alive, reset timer
+    if(this.isAlive) {
+        this.deadTimer.start()
+    } else {
+        // Delete the clone if needed
+        this.deadTimer.update()
+        if (this.deadTimer.progress == 1) {this.cloneDelete()}
+    }
+    // By default ray is not alive
+    this.isAlive = false
 }
 
 game.sprites.ray.drawFunction = function (ctx) {
     ctx.save()
-    // Display
-    //let alpha = 0
-    if (this.lifeTimer.progress < 0.5) {
-        alpha = this.lifeTimer.progress*100
-    } else {
-        alpha = 10*(1-this.lifeTimer.progress)
-    }
+    //
     ctx.lineWidth = 8
-    ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,alpha)
+    ctx.lineCap = 'round'
+    ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,100)
     // Path
     ctx.beginPath()
     ctx.moveTo(this.startX, this.startY)
     ctx.lineTo(this.endX, this.endY)
     ctx.stroke()
     //
-    ctx.lineWidth = 2
-    ctx.strokeStyle = game.tools.hsla(this.hColor,100,95,alpha)
+/*    ctx.lineWidth = 2
+    ctx.strokeStyle = game.tools.hsla(this.hColor,100,50,100)
     ctx.beginPath()
     ctx.moveTo(this.startX, this.startY)
     ctx.lineTo(this.endX, this.endY)
-    ctx.stroke()
+*/    ctx.stroke()
     //
     ctx.restore()
 }

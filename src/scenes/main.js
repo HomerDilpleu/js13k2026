@@ -96,7 +96,7 @@ game.scenes.main.draw = function() {
         ///////////////////////////////////
         ///////////////////////////////////
 */
-        game.sprites.background.draw()
+        //game.sprites.background.draw()
         game.sprites.ray.cloneExecuteForEach('draw')
         game.sprites.component.cloneExecuteForEach('draw')
 

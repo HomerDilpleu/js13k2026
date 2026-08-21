@@ -66,10 +66,20 @@ game.system.updateComponents = function () {
             if (game.variables.grid[_endCellCol][_endCellLine] != '' && game.variables.grid[_endCellCol][_endCellLine].type != 'source') {
                 _newComponentsToUpdate.push(game.variables.grid[_endCellCol][_endCellLine])
             }
-            // 4. Create the ray (if not too many rays)
-            if (game.sprites.ray._clonesList.length <= 300) {
-                game.sprites.ray.initClone(_startCell,_endCell,_color)
+            // 4. Create or keep alive the ray
+            let _existingClone = 'NA'
+            game.sprites.ray._clonesList.forEach((_clone) => {
+                if (_startCell[0]==_clone.startCell[0] && _startCell[1]==_clone.startCell[1] && _endCell[0]==_clone.endCell[0] && _endCell[1]==_clone.endCell[1] && _color==_clone.color) {
+                    _existingClone = _clone
+                } 
             }
+            )
+            if (_existingClone == 'NA') {
+                game.sprites.ray.initClone(_startCell,_endCell,_color)
+                console.log(game.sprites.ray._clonesList.length)
+            } else {
+                _existingClone.isAlive = true
+            } 
        }
     )
     ////////////////////////////////////////
