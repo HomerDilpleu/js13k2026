@@ -3,39 +3,10 @@ game.sprites.background.init = function() {
     this.height = mge.game.height
     this.x = mge.game.width / 2
     this.y = mge.game.height / 2
+    // Config
+    this.maxLength  = 100
     this.lineWidth = 4
     this.isVisible = true
-    // Tree
-    this.bottomTree1a = [[50,200],[61,177],[77,166],[91,200]]
-    this.bottomTree1b = [[61,177],[62,134],[50,114],[81,113],[77,166]]
-    this.upTree1 = [[50,114],[30,85],[62,97],[93,60],[81,113]]
-    this.leavesTree1a = [[52,118],[28,115],[5,67],[35,38],[63,69]]
-    this.leavesTree1b = [[35,38],[63,69],[52,118],[107,110],[115,71],[101,42],[74,31]]
-    // Bkg
-    this.bkg1 = [[0,0],[0,357],[325,255],[279,0]]
-    this.bkg2 = [[0,357],[324,255],[280,0],[594,101],[631,430],[320,478]]
-    this.bkg3 = [[279,0],[594,102],[631,429],[876,190],[764,0]]
-    this.bkg4 = [[764,0],[1200,0],[1200,497],[630,430],[875,189]]
-    this.bkg5 = [[0,356],[320,478],[632,430],[464,612],[495,720],[0,720]]
-    this.bkg6 = [[631,430],[463,612],[495,720],[1200,720],[1200,497]]
-}
-
-game.sprites.background.createStainedGlass = function (points, cx, cy) {
-    let _totalPoints = points.length
-    let _pieces = []
-    for (let i = 0; i < _totalPoints; i++) {
-        let _piecePath = new Path2D()
-        // Current point and next point
-        let p1 = points[i]
-        let p2 = points[(i + 1) % _totalPoints]
-        // Triangle
-        _piecePath.moveTo(cx, cy)
-        _piecePath.lineTo(p1[0], p1[1])
-        _piecePath.lineTo(p2[0], p2[1])
-        _piecePath.closePath()
-        _pieces.push(_piecePath)
-    }
-    return _pieces
 }
 
 game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _affinity) {
@@ -61,53 +32,109 @@ game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _
 }
 
 game.sprites.background.drawShape = function (ctx, _piecesList, h, s, l, _lineWidth, _affinity) {
-    i = 0
+    let i = 0
     _piecesList.forEach((_piece) => {
-        this.drawPiece(ctx, _piece, h, s+i, l+i, _lineWidth, _affinity)
+        this.drawPiece(ctx, _piece, h, s+i%20, l+i%20, _lineWidth, _affinity)
         i+=4
        } 
     )
 }
 
-game.sprites.background.drawTree = function (ctx, x, y, _xScale, _yScale) {
-    ctx.save()
-    ctx.translate(x,y)
-    ctx.scale(_xScale,_yScale)
-    // Leaves
-    let h = 115
-    let s = 50
-    let l = 50 
-    this.drawShape(ctx, this.createStainedGlass(this.leavesTree1a,30,85), h, s, l, this.lineWidth / Math.abs(_xScale),'gree')
-    this.drawShape(ctx, this.createStainedGlass(this.leavesTree1b,93,60), h, s, l, this.lineWidth / Math.abs(_xScale),'gree')
-    // Branches
-    h = 30
-    s = 30
-    l = 60 
-    this.drawShape(ctx, this.createStainedGlass(this.bottomTree1a,70,180), h, s, l, this.lineWidth / Math.abs(_xScale),'oran')
-    this.drawShape(ctx, this.createStainedGlass(this.bottomTree1b,70,130), h, s, l, this.lineWidth / Math.abs(_xScale),'oran')
-    this.drawShape(ctx, this.createStainedGlass(this.upTree1,65,105), h, s, l, this.lineWidth / Math.abs(_xScale),'oran')
-    ctx.restore()
+game.sprites.background.pieceToPath = function (_piece) {
+    let _piecePath = new Path2D()
+    let i=0
+    _piece.forEach((_point) => {
+        if(i==0){
+            _piecePath.moveTo(_point[0],_point[1])
+        } else {
+            _piecePath.lineTo(_point[0],_point[1])
+        }
+        i+=1
+       } 
+    )
+    _piecePath.closePath()  
+    return _piecePath
 }
 
-game.sprites.background.drawSky = function (ctx, x, y, _xScale, _yScale) {
-    ctx.save()
-    ctx.translate(x,y)
-    ctx.scale(_xScale,_yScale)
+game.sprites.background.shapeToPath = function (_shape) {
+    let result = []
+    _shape.forEach((_piece) => {
+        result.push(this.pieceToPath(_piece))
+    } 
+    )
+    return result
+}
+
+game.sprites.background.splitPiece = function(_piece) {
+    let maxLength2 = this.maxLength * this.maxLength 
+    let _result = []
+    // Triangle
+    if (_piece.length == 3) {
+        // Calculate characteristics of the triangle
+        let Ax = _piece[0][0]
+        let Ay = _piece[0][1]
+        let Bx = _piece[1][0]
+        let By = _piece[1][1]
+        let Cx = _piece[2][0]
+        let Cy = _piece[2][1]
+        let AB = (Bx-Ax)*(Bx-Ax)+(By-Ay)*(By-Ay)
+        let AC = (Cx-Ax)*(Cx-Ax)+(Cy-Ay)*(Cy-Ay)
+        let BC = (Cx-Bx)*(Cx-Bx)+(Cy-By)*(Cy-By)
+        // If small triangle
+        if (AB <= maxLength2 && AC <= maxLength2 && BC <= maxLength2) {
+            _result.push(_piece)
+        } else {
+            if (AB >= AC && AB >= BC) {
+                _result.push([[(2*Bx+Ax)/3,(2*By+Ay)/3],_piece[1],_piece[2]])
+                _result.push([[(2*Bx+Ax)/3,(2*By+Ay)/3],_piece[2],_piece[0]])
+            } else if (AC >= AB && AC >= BC) {
+                _result.push([[(2*Cx+Ax)/3,(2*Cy+Ay)/3],_piece[0],_piece[1]])
+                _result.push([[(2*Cx+Ax)/3,(2*Cy+Ay)/3],_piece[2],_piece[1]])
+            } else {
+                _result.push([[(2*Cx+Bx)/3,(2*Cy+By)/3],_piece[0],_piece[2]])
+                _result.push([[(2*Cx+Bx)/3,(2*Cy+By)/3],_piece[0],_piece[1]])
+            }
+        }
+    } else {
+        _result.push([_piece[1],_piece[2],_piece[3]])
+        _result.push([_piece[1],_piece[3],..._piece.slice(4),_piece[0]])
+    }
+    return _result
+}
+
+game.sprites.background.splitShape = function(_shape) {
+    let _newShape = []
+    _shape.forEach((_piece) => {
+        _newShape.push(...this.splitPiece(_piece))
+    } 
+    )
+    if(_newShape.length == _shape.length) {
+        return _newShape
+    } else {
+        return game.sprites.background.splitShape (_newShape)
+    }
+}
+
+
+
+
+
+game.sprites.background.drawFunction = function (ctx) {
+    ctx.lineWidth = 2
+    ctx.strokeStyle = "black"
+
     let h = 200
     let s = 65
     let l = 70  
-    this.drawShape(ctx, this.createStainedGlass(this.bkg1,150,150), h, s, l, this.lineWidth / Math.abs(_xScale),'cyan')
-    this.drawShape(ctx, this.createStainedGlass(this.bkg2,450,300), h, s, l, this.lineWidth / Math.abs(_xScale),'cyan')
-    this.drawShape(ctx, this.createStainedGlass(this.bkg3,730,150), h, s, l, this.lineWidth / Math.abs(_xScale),'cyan')
-    this.drawShape(ctx, this.createStainedGlass(this.bkg4,1050,220), h, s, l, this.lineWidth / Math.abs(_xScale),'cyan')
-    this.drawShape(ctx, this.createStainedGlass(this.bkg5,240,580), h, s, l, this.lineWidth / Math.abs(_xScale),'cyan')
-    this.drawShape(ctx, this.createStainedGlass(this.bkg6,900,600), h, s, l, this.lineWidth / Math.abs(_xScale),'cyan')
-    ctx.restore()
-}
 
-game.sprites.background.drawFunction = function (ctx) {
-    this.drawSky(ctx,0,0,1,1)
-    this.drawTree(ctx,0,0,3,3)
-    this.drawTree(ctx,1200,0,-3,3)
+    // A mettre dans le init
+    let testShape = [[[100,100],[200,50],[500,100],[600,300],[500,500],[300,600],[100,500],[10,300]]]
+    let testSplitShape = this.splitShape(testShape)
+    let testSplitShapePaths = this.shapeToPath(testSplitShape)
+
+    // Render
+    this.drawShape(ctx,testSplitShapePaths,h,s,l,this.lineWidth,'gree')
+
+
 }
 

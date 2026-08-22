@@ -76,7 +76,6 @@ game.system.updateComponents = function () {
             )
             if (_existingClone == 'NA') {
                 game.sprites.ray.initClone(_startCell,_endCell,_color)
-                console.log(game.sprites.ray._clonesList.length)
             } else {
                 _existingClone.isAlive = true
             } 
