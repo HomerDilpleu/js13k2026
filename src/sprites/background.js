@@ -182,7 +182,7 @@ game.sprites.background.createShapePaths = function(_shape) {
 // GRAPHICS
 ////////////////////////////////////////////////////////////////////////
 game.sprites.background.initL1 = function() {
-    this.L1 = {sky:[],tree:[],leaf:[]}
+    this.L1 = {sky:[],tree:[],leaf:[],bkg:[],frg:[],rainb:[]}
     // SKY
     this.L1.sky.push(this.createShapePaths([[0,169],[188,335],[192,368],[104,357],[0,384]]))
     this.L1.sky.push(this.createShapePaths([[0,0],[0,74],[111,19],[283,44],[302,0]]))
@@ -193,7 +193,7 @@ game.sprites.background.initL1 = function() {
 
     // TREES
     // Left tree
-    this.L1.tree.push(this.createShapePaths([[205,469],[188,333],[106,213],[119,204],[193,307],[219,266],[231,176],[195,139],[204,134],[241,175],[272,155],[277,161],[241,186],[232,267],[222,303],[245,322],[271,463]]))
+    this.L1.tree.push(this.createShapePaths([[205,469],[188,333],[119,204],[193,307],[219,266],[231,176],[204,134],[241,175],[277,161],[241,186],[232,267],[222,303],[245,322],[271,463]]))
     // Middle tree
     this.L1.tree.push(this.createShapePaths([[987,322],[965,241],[940,175],[894,114],[933,145],[955,122],[944,151],[1002,227],[1023,316]]))
     // Right tree
@@ -201,41 +201,82 @@ game.sprites.background.initL1 = function() {
 
     // LEAVES
     // Left tree
-    this.L1.leaf.push(this.createShapePaths([[0,74],[113,19],[283,44],[357,148],[296,270],[245,322],[221,303],[232,269],[241,186],[277,161],[272,156],[241,176],[204,135],[195,139],[232,177],[219,267],[193,308],[119,204],[106,214],[190,336],[0,168]]))
+    this.L1.leaf.push(this.createShapePaths([[0,74],[113,19],[283,44],[357,148],[296,270],[245,322],[221,303],[232,269],[241,186],[277,161],[241,176],[204,135],[232,177],[219,267],[193,308],[119,204],[190,336],[0,168]]))
     // Middle tree
     this.L1.leaf.push(this.createShapePaths([[965,241],[916,194],[835,170],[805,118],[866,50],[997,43],[1062,97],[1002,228],[944,151],[955,122],[933,146],[893,113],[942,177]]))
     // Right tree
     this.L1.leaf.push(this.createShapePaths([[1205,377],[1098,249],[1112,139],[1280,48],[1280,386],[1223,355],[1206,302],[1221,181],[1191,276],[1155,233]]))
 
+    // BACKGROUND
+    this.L1.bkg.push(this.createShapePaths([[0,384],[104,357],[192,368],[205,470],[0,492]]))
+    this.L1.bkg.push(this.createShapePaths([[255,375],[310,382],[473,350],[564,360],[564,418],[549,416],[519,445],[529,464],[519,498],[271,461]]))
+    this.L1.bkg.push(this.createShapePaths([[573,360],[585,421],[620,426],[640,476],[631,472],[641,498],[875,462],[1212,485],[1205,376],[1156,319],[1091,301],[943,333],[811,416],[640,367]]))
 
+    // FOREGROUND
+    this.L1.frg.push(this.createShapePaths([[0,493],[271,462],[520,498],[511,529],[489,516],[496,613],[576,720],[0,719]]))
+    this.L1.frg.push(this.createShapePaths([[544,675],[576,720],[854,720],[862,653],[786,653],[735,611],[769,616],[803,603],[787,475],[641,497],[654,529],[676,510],[678,608],[643,674]]))
+    this.L1.frg.push(this.createShapePaths([[788,475],[804,604],[835,618],[884,606],[862,653],[855,720],[1182,720],[1215,527],[1212,485],[876,462]]))
+
+    // RAINBOW
+    this.L1.rainb.push(this.createShapePaths([[387,367],[409,362],[428,234],[569,170],[710,264],[748,398],[774,405],[740,257],[575,145],[407,221]]))
+    this.L1.rainb.push(this.createShapePaths([[410,362],[428,234],[569,170],[710,264],[748,398],[728,393],[682,270],[567,194],[450,251],[431,358]]))
+    this.L1.rainb.push(this.createShapePaths([[728,392],[705,386],[667,277],[568,217],[474,259],[452,354],[431,358],[450,251],[567,194],[682,270]]))
+    this.L1.rainb.push(this.createShapePaths([[471,350],[452,354],[474,259],[567,218],[667,277],[705,386],[684,379],[643,286],[565,241],[486,282]]))
+    this.L1.rainb.push(this.createShapePaths([[472,350],[487,282],[565,241],[643,286],[684,379],[664,374],[629,303],[566,261],[506,292],[490,353]]))
+    this.L1.rainb.push(this.createShapePaths([[507,353],[491,352],[506,292],[566,261],[629,303],[664,374],[642,367],[617,311],[568,279],[519,304]]))
+    this.L1.rainb.push(this.createShapePaths([[525,355],[507,353],[520,304],[568,279],[617,311],[642,367],[620,365],[599,317],[569,298],[536,315]]))
 }
 
 
 game.sprites.background.drawL1 = function(ctx) {
     // SKY
     let h = 200
-    let s = 65
+    let s = 60
     let l = 70     
+    h = game.CONST.hColors.get('cyan')
     this.L1.sky.forEach((_shape) => {
         this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'cyan')
     } 
     )    
     // LEVAVES
-    h = 115
-    s = 50
-    l = 50     
+    h = game.CONST.hColors.get('gree')
     this.L1.leaf.forEach((_shape) => {
         this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'gree')
     } 
     )    
     // TREE
-    h = 30
-    s = 30
-    l = 60     
+    h = game.CONST.hColors.get('oran')
     this.L1.tree.forEach((_shape) => {
         this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'oran')
     } 
     )    
+    // BACKGROUND
+    h = game.CONST.hColors.get('red')
+    this.L1.bkg.forEach((_shape) => {
+        this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'red')
+    } 
+    )    
+    // FOREGROUND
+    h = game.CONST.hColors.get('yell')
+    this.L1.frg.forEach((_shape) => {
+        this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'yell')
+    } 
+    )    
+    // RAINBOW
+    h = game.CONST.hColors.get('red')
+    this.drawShape(ctx,this.L1.rainb[0],h,s,l,this.lineWidth,'red')
+    h = game.CONST.hColors.get('oran')
+    this.drawShape(ctx,this.L1.rainb[1],h,s,l,this.lineWidth,'oran')
+    h = game.CONST.hColors.get('yell')
+    this.drawShape(ctx,this.L1.rainb[2],h,s,l,this.lineWidth,'yell')
+    h = game.CONST.hColors.get('gree')
+    this.drawShape(ctx,this.L1.rainb[3],h,s,l,this.lineWidth,'gree')
+    h = game.CONST.hColors.get('cyan')
+    this.drawShape(ctx,this.L1.rainb[4],h,s,l,this.lineWidth,'cyan')
+    h = game.CONST.hColors.get('blue')
+    this.drawShape(ctx,this.L1.rainb[5],h,s,l,this.lineWidth,'blue')
+    h = game.CONST.hColors.get('mage')
+    this.drawShape(ctx,this.L1.rainb[6],h,s,l,this.lineWidth,'mage')
 }
 
 

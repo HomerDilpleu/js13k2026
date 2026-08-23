@@ -46,7 +46,10 @@ game.checkLevelCompleted = function () {
 game.levels.push([[['target',20,6,'oran',0],['source',14,6,'oran',180]],
                   [['target',22,9,'gree',0],['source',17,9,'gree',180]],
                   [['target',16,1,'cyan',0],['source',10,1,'cyan',180]],
-                  [['target',16,1,'red',0],['source',10,1,'red',180]]]
+                  [['target',16,1,'red',0],['source',10,1,'red',180]],
+                  [['target',16,1,'yell',0],['source',10,1,'yell',180]],
+                  [['target',16,1,'blue',0],['source',10,1,'blue',180]],
+                  [['target',16,1,'mage',0],['source',10,1,'mage',180]]]
 )
 game.levels.push([[['target',16,1,'red',0],['source',10,1,'red',180]],
                   [['target',16,2,'oran',0],['source',22,2,'oran',0]],
