@@ -72,7 +72,8 @@ game.sprites.background.triangulatePolygon = function(polygon) {
         let j = (i + 1) % vertices.length
         area += vertices[i][0] * vertices[j][1] - vertices[j][0] * vertices[i][1]
     }
-    if (area === 0) return [] // Invalid flat polygon
+    // Invalid flat polygon
+    if (area === 0) return [] 
     let isCCW = area > 0
     // 2. Ear clipping loop optimized to pick the best (most balanced) ear first
     let safetyLimit = vertices.length * 2

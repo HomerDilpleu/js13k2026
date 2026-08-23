@@ -10,7 +10,7 @@ inputFiles = ['../src/lib/mge_V1.5.0.js',\
               '../src/sprites/playButton.js',\
               '../src/sprites/ray.js',\
               '../src/sprites/component.js',\
-              '../src/sprites/rainbow.js',\
+              '../src/sprites/background.js',\
               '../src/system.js'\
               ]
 
@@ -203,6 +203,7 @@ stringsToUglify+=['gridCellSize','gridNbCols','gridNbLines','rayMaxLength','hCol
 stringsToUglify+=['colorIsReached','gameState']
 stringsToUglify+=['gridToCoordinate']
 stringsToUglify+=['curLevelNbParts','curLevelPart','curLevel']
+stringsToUglify+=['timers','partCompleted']
 
 # assets / sounds.js
 stringsToUglify+=['kick','snare','glock','lead','_empty','_pad','Track']
@@ -229,8 +230,16 @@ stringsToUglify+=['_startCell','_endCell','startCell','endCell','startX','startY
 # sprites / playButton.js
 stringsToUglify+=['playButton']
 
-# sprites / rainbow.js
-stringsToUglify+=['rainbow']
+# sprites / background.js
+stringsToUglify+=['maxLength','initL1']
+stringsToUglify+=['drawPiece','_path','_lineWidth','_affinity','_timerProgress']
+stringsToUglify+=['drawShape','_piecesList']
+stringsToUglify+=['shapeToPath','_shape','_piecePath']
+stringsToUglify+=['triangulatePolygon','polygon','vertices','triangles','safetyLimit','bestEarIndex','shortestDiagonal','prevIdx','nextIdx','crossProduct','isConvex','inside','diagLength']
+stringsToUglify+=['isPointInTriangle','hasNeg','hasPos']
+stringsToUglify+=['splitTriangle','maxL2']
+stringsToUglify+=['splitShape','_newShape']
+stringsToUglify+=['createShapePaths','_shapeTriangles']
 
 
 # system.js
