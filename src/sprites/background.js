@@ -20,14 +20,14 @@ game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _
     // Calculate color depending of timer progress
     if (_timerProgress == 0) {
         // grey
-        ctx.fillStyle = game.tools.hsla(0,0,90,100)
-        ctx.strokeStyle = game.tools.hsla(0,0,50,100)
+        ctx.fillStyle = game.tools.hsla(0,0,95,100)
+        ctx.strokeStyle = game.tools.hsla(0,0,85,100)
     } else if ((_timerProgress <= 0.2)) {
         ctx.fillStyle = game.tools.hsla(0,0,Math.min(100,80 + 200*_timerProgress),100)
-        ctx.strokeStyle = game.tools.hsla(0,0,80,100)
+        ctx.strokeStyle = game.tools.hsla(0,0,100,100)
     } else if ((_timerProgress <= 1)) {
         ctx.fillStyle = game.tools.hsla(h,s*_timerProgress,l+(100-l)*(1-_timerProgress),100)
-        ctx.strokeStyle = game.tools.hsla(0,0,0,100)
+        ctx.strokeStyle = game.tools.hsla(0,0,75,100)
     }
     // Draw
     ctx.lineWidth = _lineWidth
@@ -232,7 +232,7 @@ game.sprites.background.drawL1 = function(ctx) {
     // SKY
     let h = 200
     let s = 60
-    let l = 70     
+    let l = 75     
     h = game.CONST.hColors.get('cyan')
     this.L1.sky.forEach((_shape) => {
         this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'cyan')
