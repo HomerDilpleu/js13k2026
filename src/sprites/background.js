@@ -45,8 +45,17 @@ game.sprites.background.init = function() {
     //
     this.L1TreeLeft08 = this.shapeToPath(this.splitShape([[[112,19],[283,44],[260,200],[130,148]]]))
     this.L1TreeLeft09 = this.shapeToPath(this.splitShape([[[196,281],[155,227],[131,148],[260,200]]]))
+    this.L1TreeLeft10 = this.shapeToPath(this.splitShape([[[0,74],[0,170],[137,205],[113,19]]]))
+    this.L1TreeLeft11 = this.shapeToPath(this.splitShape([[[76,189],[139,219],[137,205]]]))
+    this.L1TreeLeft12 = this.shapeToPath(this.splitShape([[[0,170],[75,189],[149,241],[127,281]]]))
+    this.L1TreeLeft13 = this.shapeToPath(this.splitShape([[[148,241],[187,334],[126,280]]]))
+    this.L1TreeLeft14 = this.shapeToPath(this.splitShape([[[283,44],[260,201],[323,217],[357,147]]]))
+    this.L1TreeLeft15 = this.shapeToPath(this.splitShape([[[250,227],[295,210],[259,201]]]))
+    this.L1TreeLeft16 = this.shapeToPath(this.splitShape([[[295,210],[323,217],[297,270],[242,245]]]))
+    this.L1TreeLeft17 = this.shapeToPath(this.splitShape([[[242,245],[297,270],[245,321],[219,300]]]))
 
-    
+
+
     
 }
 
@@ -200,6 +209,14 @@ game.sprites.background.drawL1 = function(ctx) {
     l = 50 
     this.drawShape(ctx,this.L1TreeLeft08,h,s,l,this.lineWidth,'gree')
     this.drawShape(ctx,this.L1TreeLeft09,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft10,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft11,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft12,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft13,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft14,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft15,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft16,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft17,h,s,l,this.lineWidth,'gree')
     
 }
 
