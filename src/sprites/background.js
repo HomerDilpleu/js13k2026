@@ -5,8 +5,49 @@ game.sprites.background.init = function() {
     this.y = mge.game.height / 2
     // Config
     this.maxLength  = 100
-    this.lineWidth = 4
+    this.lineWidth = 2
     this.isVisible = true
+    ////////////////////////////
+    // LEVEL 1
+    ////////////////////////////
+    //
+    this.L1Sky01 = this.shapeToPath(this.splitShape([[[0,169],[189,335],[0,384]]]))
+    this.L1Sky02 = this.shapeToPath(this.splitShape([[[105,357],[189,335],[192,368]]]))
+    this.L1Sky03 = this.shapeToPath(this.splitShape([[[0,0],[0,74],[151,0]]]))
+    this.L1Sky04 = this.shapeToPath(this.splitShape([[[252,0],[408,221],[658,107],[572,0]]]))
+    this.L1Sky05 = this.shapeToPath(this.splitShape([[[150,0],[113,20],[283,44],[252,0]]]))
+    this.L1Sky06 = this.shapeToPath(this.splitShape([[[357,149],[408,221],[387,367],[310,382],[298,268]]]))
+    this.L1Sky07 = this.shapeToPath(this.splitShape([[[298,268],[310,382],[255,375],[245,322]]]))
+    this.L1Sky08 = this.shapeToPath(this.splitShape([[[536,314],[599,316],[568,297]]]))
+    this.L1Sky09 = this.shapeToPath(this.splitShape([[[536,314],[524,355],[564,359],[564,315]]]))
+    this.L1Sky10 = this.shapeToPath(this.splitShape([[[565,315],[599,316],[620,365],[572,360]]]))
+    this.L1Sky11 = this.shapeToPath(this.splitShape([[[1280,0],[1280,47],[1112,139],[945,0]]]))
+    this.L1Sky12 = this.shapeToPath(this.splitShape([[[1112,139],[1090,301],[1023,315],[1002,226],[1062,97]]]))
+    this.L1Sky13 = this.shapeToPath(this.splitShape([[[1098,249],[1091,302],[1157,320]]]))
+    this.L1Sky14 = this.shapeToPath(this.splitShape([[[752,59],[997,43],[946,0],[778,0]]]))
+    this.L1Sky15 = this.shapeToPath(this.splitShape([[[571,0],[707,167],[779,0]]]))
+    this.L1Sky16 = this.shapeToPath(this.splitShape([[[739,257],[918,195],[942,333],[773,405]]]))
+    this.L1Sky17 = this.shapeToPath(this.splitShape([[[942,333],[771,405],[811,416]]]))
+    this.L1Sky18 = this.shapeToPath(this.splitShape([[[932,280],[972,268],[988,323],[942,333]]]))
+    this.L1Sky19 = this.shapeToPath(this.splitShape([[[918,195],[966,243],[972,268],[933,280]]]))
+    this.L1Sky20 = this.shapeToPath(this.splitShape([[[918,195],[720,135],[687,221],[740,257]]]))
+    this.L1Sky21 = this.shapeToPath(this.splitShape([[[658,107],[707,166],[687,221],[575,145]]]))
+    this.L1Sky22 = this.shapeToPath(this.splitShape([[[754,59],[864,52],[805,119],[720,135]]]))
+    this.L1Sky23 = this.shapeToPath(this.splitShape([[[720,135],[806,118],[835,170]]]))
+    //
+    this.L1TreeLeft01 = this.shapeToPath(this.splitShape([[[205,469],[188,334],[245,322],[271,462]]]))
+    this.L1TreeLeft02 = this.shapeToPath(this.splitShape([[[188,334],[245,322],[196,281],[170,296]]]))
+    this.L1TreeLeft03 = this.shapeToPath(this.splitShape([[[148,239],[156,228],[196,281],[171,295]]]))
+    this.L1TreeLeft04 = this.shapeToPath(this.splitShape([[[75,189],[156,227],[148,240]]]))
+    this.L1TreeLeft05 = this.shapeToPath(this.splitShape([[[130,147],[156,227],[139,218]]]))
+    this.L1TreeLeft06 = this.shapeToPath(this.splitShape([[[196,281],[259,202],[219,301]]]))
+    this.L1TreeLeft07 = this.shapeToPath(this.splitShape([[[293,212],[242,245],[249,228]]]))
+    //
+    this.L1TreeLeft08 = this.shapeToPath(this.splitShape([[[112,19],[283,44],[260,200],[130,148]]]))
+    this.L1TreeLeft09 = this.shapeToPath(this.splitShape([[[196,281],[155,227],[131,148],[260,200]]]))
+
+    
+    
 }
 
 game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _affinity) {
@@ -115,26 +156,60 @@ game.sprites.background.splitShape = function(_shape) {
     }
 }
 
+game.sprites.background.drawL1 = function(ctx) {
+    // SKY
+    let h = 200
+    let s = 65
+    let l = 70     
+    this.drawShape(ctx,this.L1Sky01,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky02,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky03,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky04,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky05,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky06,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky07,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky08,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky09,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky10,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky11,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky12,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky13,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky14,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky15,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky16,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky17,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky18,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky19,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky20,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky21,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky22,h,s,l,this.lineWidth,'cyan')
+    this.drawShape(ctx,this.L1Sky23,h,s,l,this.lineWidth,'cyan')
+    // TREE LEFT
+    h = 30
+    s = 30
+    l = 60
+    this.drawShape(ctx,this.L1TreeLeft01,h,s,l,this.lineWidth,'oran')
+    this.drawShape(ctx,this.L1TreeLeft02,h,s,l,this.lineWidth,'oran')
+    this.drawShape(ctx,this.L1TreeLeft03,h,s,l,this.lineWidth,'oran')
+    this.drawShape(ctx,this.L1TreeLeft04,h,s,l,this.lineWidth,'oran')
+    this.drawShape(ctx,this.L1TreeLeft05,h,s,l,this.lineWidth,'oran')
+    this.drawShape(ctx,this.L1TreeLeft06,h,s,l,this.lineWidth,'oran')
+    this.drawShape(ctx,this.L1TreeLeft07,h,s,l,this.lineWidth,'oran')
+    h = 115
+    s = 50
+    l = 50 
+    this.drawShape(ctx,this.L1TreeLeft08,h,s,l,this.lineWidth,'gree')
+    this.drawShape(ctx,this.L1TreeLeft09,h,s,l,this.lineWidth,'gree')
+    
+}
+
 
 
 
 
 game.sprites.background.drawFunction = function (ctx) {
-    ctx.lineWidth = 2
-    ctx.strokeStyle = "black"
-
-    let h = 200
-    let s = 65
-    let l = 70  
-
-    // A mettre dans le init
-    let testShape = [[[100,100],[200,50],[500,100],[600,300],[500,500],[300,600],[100,500],[10,300]]]
-    let testSplitShape = this.splitShape(testShape)
-    let testSplitShapePaths = this.shapeToPath(testSplitShape)
-
-    // Render
-    this.drawShape(ctx,testSplitShapePaths,h,s,l,this.lineWidth,'gree')
-
+    
+    this.drawL1(ctx)
 
 }
 
