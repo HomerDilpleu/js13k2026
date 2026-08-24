@@ -182,7 +182,7 @@ game.sprites.background.createShapePaths = function(_shape) {
 // GRAPHICS
 ////////////////////////////////////////////////////////////////////////
 game.sprites.background.initL1 = function() {
-    this.L1 = {sky:[],tree:[],leaf:[],bkg:[],frg:[],rainb:[]}
+    this.L1 = {sky:[],tree:[],leaf:[],bkg:[],frg:[],rainb:[],egg:[],uni:[]}
     // SKY
     this.L1.sky.push(this.createShapePaths([[0,169],[188,335],[192,368],[104,357],[0,384]]))
     this.L1.sky.push(this.createShapePaths([[0,0],[0,74],[111,19],[283,44],[302,0]]))
@@ -225,6 +225,18 @@ game.sprites.background.initL1 = function() {
     this.L1.rainb.push(this.createShapePaths([[472,350],[487,282],[565,241],[643,286],[684,379],[664,374],[629,303],[566,261],[506,292],[490,353]]))
     this.L1.rainb.push(this.createShapePaths([[507,353],[491,352],[506,292],[566,261],[629,303],[664,374],[642,367],[617,311],[568,279],[519,304]]))
     this.L1.rainb.push(this.createShapePaths([[525,355],[507,353],[520,304],[568,279],[617,311],[642,367],[620,365],[599,317],[569,298],[536,315]]))
+
+    // EGG
+    this.L1.egg.push(this.createShapePaths([[489,515],[497,615],[544,675],[643,674],[678,608],[676,510],[638,543],[594,528],[544,552]]))
+    this.L1.egg.push(this.createShapePaths([[736,611],[770,616],[803,603],[836,617],[884,606],[862,653],[786,653]]))
+
+    // UNICORN
+    this.L1.uni.push(this.createShapePaths([[526,540],[537,508],[559,506],[568,540],[544,552]]))
+    this.L1.uni.push(this.createShapePaths([[607,533],[614,502],[633,503],[650,533],[638,544]]))
+    this.L1.uni.push(this.createShapePaths([[640,476],[620,426],[585,421],[564,318],[564,418],[550,416],[519,445],[530,464],[588,483],[582,454]]))
+
+    this.L1.uniWhite=this.createShapePaths([[526,540],[511,530],[529,464],[589,483],[582,455],[632,473],[654,528],[650,534],[633,503],[614,502],[607,533],[594,528],[568,540],[559,506],[536,508]])
+
 }
 
 
@@ -277,6 +289,21 @@ game.sprites.background.drawL1 = function(ctx) {
     this.drawShape(ctx,this.L1.rainb[5],h,s,l,this.lineWidth,'blue')
     h = game.CONST.hColors.get('mage')
     this.drawShape(ctx,this.L1.rainb[6],h,s,l,this.lineWidth,'mage')
+    // EGG
+    h = game.CONST.hColors.get('mage')
+    this.L1.egg.forEach((_shape) => {
+        this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'mage')
+    } 
+    )    
+    // UNICORN
+    h = game.CONST.hColors.get('blue')
+    this.L1.uni.forEach((_shape) => {
+        this.drawShape(ctx,_shape,h,s,l,this.lineWidth,'blue')
+    } 
+    )    
+    h = game.CONST.hColors.get('blue')
+    this.drawShape(ctx,this.L1.uniWhite,h,s,100,this.lineWidth,'blue')
+    
 }
 
 
