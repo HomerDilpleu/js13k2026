@@ -17,17 +17,32 @@ game.sprites.background.init = function() {
 game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _affinity) {
     // Get the progress of the timer of the affinity
     let _timerProgress = game.timers[_affinity].progress
-    // Calculate color depending of timer progress
-    if (_timerProgress == 0) {
-        // grey
-        ctx.fillStyle = game.tools.hsla(0,0,95,100)
-        ctx.strokeStyle = game.tools.hsla(0,0,85,100)
-    } else if ((_timerProgress <= 0.2)) {
-        ctx.fillStyle = game.tools.hsla(0,0,Math.min(100,80 + 200*_timerProgress),100)
-        ctx.strokeStyle = game.tools.hsla(0,0,100,100)
-    } else if ((_timerProgress <= 1)) {
-        ctx.fillStyle = game.tools.hsla(h,s*_timerProgress,l+(100-l)*(1-_timerProgress),100)
-        ctx.strokeStyle = game.tools.hsla(0,0,75,100)
+    // Level is not finished
+    if (game.timers.levelCompleted.progress == 0 ||game.timers.levelCompleted.progress == 1) {
+        // Calculate color depending of timer progress
+        if (_timerProgress == 0) {
+            // grey
+            ctx.fillStyle = game.tools.hsla(0,0,95,100)
+            ctx.strokeStyle = game.tools.hsla(0,0,85,100)
+        } else if ((_timerProgress <= 0.2)) {
+            ctx.fillStyle = game.tools.hsla(0,0,Math.min(100,80 + 200*_timerProgress),100)
+            ctx.strokeStyle = game.tools.hsla(0,0,100,100)
+        } else if ((_timerProgress <= 1)) {
+            ctx.fillStyle = game.tools.hsla(h,s*_timerProgress,l+(100-l)*(1-_timerProgress),100)
+            ctx.strokeStyle = game.tools.hsla(0,0,75,100)
+        }
+    } else {
+        // Level is finished
+        if (game.timers.levelCompleted.progress < 0.1) {
+            ctx.fillStyle = game.tools.hsla(0,0,Math.min(100,80 + 200*_timerProgress),100)
+            ctx.strokeStyle = game.tools.hsla(0,0,90,100)
+        } else if (game.timers.levelCompleted.progress < 0.5 ) {
+            ctx.fillStyle = game.tools.hsla(h,(s+10)*_timerProgress,l+(100-l)*(1-_timerProgress),100)
+            ctx.strokeStyle = game.tools.hsla(0,0,50,100)
+        } else {
+            ctx.fillStyle = game.tools.hsla(h,s+10,l-5+(game.timers.levelCompleted.progress-0.5)*70,100)
+            ctx.strokeStyle = game.tools.hsla(0,0,50+(game.timers.levelCompleted.progress-0.5)*150,100)
+        }
     }
     // Draw
     ctx.lineWidth = _lineWidth

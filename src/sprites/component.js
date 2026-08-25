@@ -41,8 +41,6 @@ game.sprites.component.update = function () {
         if (this.rotation >= 360) {this.rotation = 0}
         // Ask to update system
         game.system.curStep = 0
-        // Check if must be deletes
-        if(this.isReached && game.timers.partCompleted.progress==1){this.cloneDelete()}
     }
     // Increment timers
     this.sourceTimer.update()

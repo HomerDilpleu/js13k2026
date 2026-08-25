@@ -28,10 +28,13 @@ game.scenes.main.update = function() {
                 // Check level
                 if (game.checkLevelCompleted()) {
                         game.variables.gameState='levelCompleted'
+                        game.sprites.component.cloneDeleteAll()
+                        game.timers.levelCompleted.start()
                 } else {
                         // Check part of level
                         if (game.checkPartCompleted()) {
                                 game.variables.gameState='partCompleted'
+                                game.sprites.component.cloneDeleteAll()
                                 game.timers.partCompleted.start()
                         }
                 }
@@ -52,9 +55,13 @@ game.scenes.main.update = function() {
         // GameState: levelCompleted
         ///////////////////////////
         if (game.variables.gameState == 'levelCompleted') {
+                // Update timer
+                game.timers.levelCompleted.update()
                 // Load next level
-                game.loadLevelPart(game.variables.curLevel+1,0)
-                game.variables.gameState='running'
+                if (game.timers.levelCompleted.progress == 1) {
+                        game.loadLevelPart(game.variables.curLevel+1,0)
+                        game.variables.gameState='running'
+                }
         }
         ///////////////////////////
         // Always

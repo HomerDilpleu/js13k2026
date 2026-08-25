@@ -51,6 +51,7 @@ game = {
   },
   timers:{
     partCompleted:mge.game.createTimer(2000 ,'X'),
+    levelCompleted:mge.game.createTimer(4000 ,'X'),
     red:mge.game.createTimer(1500 ,'X'),
     oran:mge.game.createTimer(1500 ,'X'),
     yell:mge.game.createTimer(1500 ,'X'),
