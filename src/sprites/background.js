@@ -33,15 +33,12 @@ game.sprites.background.drawPiece = function (ctx, _path, h, s, l, _lineWidth, _
         }
     } else {
         // Level is finished
-        if (game.timers.levelCompleted.progress < 0.1) {
-            ctx.fillStyle = game.tools.hsla(0,0,Math.min(100,80 + 200*_timerProgress),100)
-            ctx.strokeStyle = game.tools.hsla(0,0,90,100)
-        } else if (game.timers.levelCompleted.progress < 0.5 ) {
-            ctx.fillStyle = game.tools.hsla(h,(s+10)*_timerProgress,l+(100-l)*(1-_timerProgress),100)
-            ctx.strokeStyle = game.tools.hsla(0,0,50,100)
+        if  (game.timers.levelCompleted.progress < 0.5 ) {
+            ctx.fillStyle = game.tools.hsla(h,s-15,l-10,100)
+            ctx.strokeStyle = game.tools.hsla(0,0,30,100)
         } else {
-            ctx.fillStyle = game.tools.hsla(h,s+10,l-5+(game.timers.levelCompleted.progress-0.5)*70,100)
-            ctx.strokeStyle = game.tools.hsla(0,0,50+(game.timers.levelCompleted.progress-0.5)*150,100)
+            ctx.fillStyle = game.tools.hsla(h,s-15,l-10+(game.timers.levelCompleted.progress-0.5)*70,100)
+            ctx.strokeStyle = game.tools.hsla(0,0,30+(game.timers.levelCompleted.progress-0.5)*150,100)
         }
     }
     // Draw

@@ -205,16 +205,17 @@ game.sprites.component.drawFunction = function (ctx) {
     }
     // MIRROR
     if (this.type == 'mirror') {
-        ctx.strokeStyle = 'black'
-        ctx.fillStyle = 'grey'
-        ctx.lineWidth = 2
+        ctx.lineWidth = 8
+        ctx.lineJoin = 'round'
+        ctx.strokeStyle =  game.tools.hsla(0,0,35,100)
+        ctx.fillStyle = game.tools.hsla(0,0,95,100)
         ctx.beginPath()
-        ctx.moveTo(0,0)
-        ctx.lineTo(40,40)
-        ctx.lineTo(0,40)
+        ctx.moveTo(-5,-5)
+        ctx.lineTo(45,45)
+        ctx.lineTo(-5,45)
         ctx.closePath()
-        ctx.stroke()
         ctx.fill()
+        ctx.stroke()
     }
     // MIXER
     if (this.type == 'mixer') {
